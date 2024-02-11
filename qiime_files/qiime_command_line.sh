@@ -103,7 +103,7 @@ cd Desktop/MICB-475-Team-2/qiime_files
 #Import server filtered table into git repository
 scp root@10.19.139.167:/data/parkinsons/table-no-mitochondria-no-chloroplast.qzv .
 
-### While in /data/parkinsons directory ###]
+### While in /data/parkinsons directory ###
 
 #Generate a tree for phylogenetic diversity analyses
 qiime phylogeny align-to-tree-mafft-fasttree \
@@ -120,7 +120,7 @@ cd /data
 
 #Make new export directory and navigate to it
 mkdir parkinsons_export
-ls parkinsons_export
+cd parkinsons_export
 
 #Export files
 qiime tools export \
@@ -137,6 +137,8 @@ qiime tools export \
 
 #Navigate to table_export and change feature-table.biom to feature-table.txt
 cd table_export
+
+biom convert \
 -i feature-table.biom \
 --to-tsv \
 -o feature-table.txt
@@ -146,5 +148,11 @@ cd table_export
 #Navigate to Qiime directory in git repository directory
 cd Desktop/MICB-475-Team-2/qiime_files
 
-#Import export_parkinsons to git repository
+#Import parkinsons_export to git repository
 scp -r root@10.19.139.167:~/data/parkinsons_export .
+
+#Navigate to parkinsons_export and import parkinsons_metadata.txt to git repository
+
+cd Desktop/MICB-475-Team-2/qiime_files/parkinsons_export
+
+scp root@10.19.139.167:/mnt/datasets/project_2/parkinsons/parkinsons_metadata.txt .
