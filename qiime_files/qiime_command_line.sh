@@ -168,3 +168,18 @@ scp -r root@10.19.139.167:~/data/parkinsons_export .
 cd Desktop/MICB-475-Team-2/qiime_files/parkinsons_export
 
 scp root@10.19.139.167:/mnt/datasets/project_2/parkinsons/parkinsons_metadata.txt .
+
+### Transfer pd_metadata_treament.txt with new metadata column (made in R) to server ###
+scp /Users/johngoh/Desktop/MICB-475-Team-2/R_files/Metadata/pd_metadata_treatment.txt root@10.19.139.167:/home/qiime2/data/parkinsons
+
+### In server, make new files based on new metadata file ###
+
+#Navigate to parkinsons directory
+cd /data/parkinsons
+
+## Visualize ASVs stats NOT WORKING YET
+qiime feature-table summarize \
+  --i-table table.qza \
+  --o-visualization table_treatment.qzv \
+  --m-sample-metadata-file /home/qiime2/data/parkinsons/pd_metadata_treatment.txt
+
