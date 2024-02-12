@@ -147,6 +147,14 @@ biom convert \
 --to-tsv \
 -o feature-table.txt
 
+#Navigate to table_export and change feature-table.biom to feature-table.txt
+cd /data/parkinsons_export/table-no-mitochondria-no-chloropast_export
+
+biom convert \
+-i feature-table.biom \
+--to-tsv \
+-o feature-table.txt
+
 ### Open local command line (not in server) to export parkinsons_export###
 
 #Navigate to Qiime directory in git repository directory
