@@ -38,7 +38,10 @@ pd_data_treatment <- pd_data_zero %>%
 
 
 pd_data_treatment <- arrange(pd_data_treatment, treatment)
+pd_data_treatment$treatment <- as.factor(pd_data_treatment$treatment)
+class(pd_data_treatment$treatment)
 
 freq_table <- table(pd_data_treatment$treatment)
 freq_table
 
+write.table(pd_data_treatment, file="pd_metadata_treatment.txt", sep="\t", quote=FALSE)
