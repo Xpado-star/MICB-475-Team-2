@@ -4,6 +4,9 @@ This document contains summaries of what was done throughout the project
 David - Edited the R file, moved into R folder
 
 John - fixed R file path script
+
+**Ali** - Changed 'treatment' column from numeric to factor; saved metadata as .txt file; created new RProject for phyloseq object; created script for phyloseq object 'pd_phyloseq' and saved as .RData file  
+
 ## February 11, 2024
 John - Created README file. Imported and demultiplexed parkinsons sequences. Denoising, clusterng, taxonomic training, filtering, and export conducted.
 
