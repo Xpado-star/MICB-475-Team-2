@@ -214,12 +214,17 @@ scp root@10.19.139.167:/data/parkinsons/table_treatment.qzv .
 #Navigate to parkinsons directory
 cd /data/parkinsons
 
+#Change treatment column in pd_metadata_treatment.tsv to categorical for alpha rarefaction visualization
+qiime tools cast-metadata pd_metadata_treatment.tsv \
+  --cast treatment:categorical \
+  --output-file pd_metadata_treatment_categorical.tsv
+
 # Alpha-rarefaction
 qiime diversity alpha-rarefaction \
   --i-table table.qza \
   --i-phylogeny rooted-tree.qza \
   --p-max-depth 10000 \
-  --m-metadata-file /home/qiime2/data/parkinsons/pd_metadata_treatment.tsv \
+  --m-metadata-file /home/qiime2/data/parkinsons/pd_metadata_treatment_categorical.tsv \
   --o-visualization alpha-rarefaction_treatment.qzv
 
 ### Open local command line (not in server) ###
@@ -242,24 +247,24 @@ qiime diversity core-metrics-phylogenetic \
   --i-phylogeny rooted-tree.qza \
   --i-table table-no-mitochondria-no-chloroplast.qza \
   --p-sampling-depth 5421 \
-  --m-metadata-file /home/qiime2/data/parkinsons/pd_metadata_treatment.tsv \
+  --m-metadata-file /home/qiime2/data/parkinsons/pd_metadata_treatment_categorical.tsv \
   --output-dir core-metrics-results_treatment
 
 # Calculate alpha-group-significance
 qiime diversity alpha-group-significance \
   --i-alpha-diversity core-metrics-results_treatment/faith_pd_vector.qza \
-  --m-metadata-file /home/qiime2/data/parkinsons/pd_metadata_treatment.tsv \
+  --m-metadata-file /home/qiime2/data/parkinsons/pd_metadata_treatment_categorical.tsv \
   --o-visualization core-metrics-results_treatment/faith-pd-group-significance.qzv
 
 qiime diversity alpha-group-significance \
   --i-alpha-diversity core-metrics-results_treatment/evenness_vector.qza \
-  --m-metadata-file /home/qiime2/data/parkinsons/pd_metadata_treatment.tsv \
+  --m-metadata-file /home/qiime2/data/parkinsons/pd_metadata_treatment_categorical.tsv \
   --o-visualization core-metrics-results_treatment/evenness-group-significance.qzv
   
 # Calculate beta-group-significance
 qiime diversity beta-group-significance \
   --i-distance-matrix core-metrics-results_treatment/unweighted_unifrac_distance_matrix.qza \
-  --m-metadata-file /home/qiime2/data/parkinsons/pd_metadata_treatment.tsv \
+  --m-metadata-file /home/qiime2/data/parkinsons/pd_metadata_treatment_categorical.tsv \
   --m-metadata-column treatment \
   --o-visualization core-metrics-results_treatment/unweighted-unifrac-treatment-significance.qzv \
   --p-pairwise
