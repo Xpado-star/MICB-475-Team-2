@@ -2,6 +2,7 @@
 This document contains summaries of what was done throughout the project
 ## February 12, 2024
 David - Edited the R file, moved into R folder
+
 John - fixed R file path script
 ## February 11, 2024
 John - Created README file. Imported and demultiplexed parkinsons sequences. Denoising, clusterng, taxonomic training, filtering, and export conducted.
