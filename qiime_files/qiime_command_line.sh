@@ -170,7 +170,7 @@ cd Desktop/MICB-475-Team-2/qiime_files/parkinsons_export
 scp root@10.19.139.167:/mnt/datasets/project_2/parkinsons/parkinsons_metadata.txt .
 
 ### Transfer pd_metadata_treament.txt with new metadata column (made in R) to server ###
-scp /Users/johngoh/Desktop/MICB-475-Team-2/R_files/Metadata/pd_metadata_treatment.txt root@10.19.139.167:/home/qiime2/data/parkinsons
+scp /Users/johngoh/Desktop/MICB-475-Team-2/R_files/Metadata/pd_metadata_treatment.tsv root@10.19.139.167:/home/qiime2/data/parkinsons
 
 ### In server, make new files based on new metadata file ###
 
