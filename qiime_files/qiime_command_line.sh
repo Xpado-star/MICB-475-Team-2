@@ -181,5 +181,5 @@ cd /data/parkinsons
 qiime feature-table summarize \
   --i-table table.qza \
   --o-visualization table_treatment.qzv \
-  --m-sample-metadata-file /home/qiime2/data/parkinsons/pd_metadata_treatment.txt
+  --m-sample-metadata-file /home/qiime2/data/parkinsons/pd_metadata_treatment.tsv
 
