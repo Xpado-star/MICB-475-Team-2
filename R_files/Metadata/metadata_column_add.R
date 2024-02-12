@@ -44,4 +44,5 @@ class(pd_data_treatment$treatment)
 freq_table <- table(pd_data_treatment$treatment)
 freq_table
 
+save(pd_data_treatment, file = "pd_metadata_treatment.RData")
 write.table(pd_data_treatment, file="pd_metadata_treatment.txt", sep="\t", quote=FALSE)
