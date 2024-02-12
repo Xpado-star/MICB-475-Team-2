@@ -128,6 +128,10 @@ qiime tools export \
 --output-path table_export 
 
 qiime tools export \
+--input-path ../parkinsons/table-no-mitochondria-no-chloroplast.qza \
+--output-path table-no-mitochondria-no-chloropast_export
+
+qiime tools export \
 --input-path ../parkinsons/taxonomy.qza \
 --output-path taxonomy_export 
 
