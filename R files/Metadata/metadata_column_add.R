@@ -6,7 +6,7 @@ library(tidyverse)
 
 #load in data
 
-pd_data <- read_delim(file = "qiime_files/parkinsons_export/parkinsons_metadata.txt", delim = "\t")
+pd_data <- read_delim(file = "../../qiime_files/parkinsons_export/parkinsons_metadata.txt", delim = "\t")
 
 summary(pd_data)
 
@@ -41,3 +41,4 @@ pd_data_treatment <- arrange(pd_data_treatment, treatment)
 
 freq_table <- table(pd_data_treatment$treatment)
 freq_table
+
