@@ -20,4 +20,9 @@ pd_amant = 6
 pd_combo = 7  
 
 ### Visualization of sequences on view.qiime.org
-All high quality reads throughout. Setting a standard of 30 for median quality score, no trimming is required. 251 is the trimming parameter and the length of all of the sequences. (John)
+John - All high quality reads throughout. Setting a standard of 30 for median quality score, no trimming is required. 251 is the trimming parameter and the length of all of the sequences.
+
+## February 12, 2024
+John - Uploaded new pd_metadata_treatment.tsv to server. Compiled table, taxa bar plots, and no mitochondria no chloroplast table as viewable .qzv files with new pd_metadata_treatment.tsv file.
+
+John - Using table-no-mitochondria-no-chloroplast_treatment.qzv, we found a maximum sampling depth of 5421 in order to retain at least 6 samples in all treatment categories. Alpha-rarefaction curve displayed that 5421 falls under the plateau.
