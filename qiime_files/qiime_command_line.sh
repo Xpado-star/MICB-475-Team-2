@@ -276,3 +276,14 @@ cd Desktop/MICB-475-Team-2/qiime_files
 
 #Import server core-metrics-results_treatment to git repository
 scp -r root@10.19.139.167:~/data/parkinsons/core-metrics-results_treatment .
+
+### Open local command line (not in server) ###
+
+#Navigate to Qiime directory in git repository directory
+cd Desktop/MICB-475-Team-2/qiime_files
+
+#Import server stats.qzv curve into git repository to visualize DADA2 stats
+scp root@10.19.139.167:/data/parkinsons/stats.qzv .
+
+#Import server table.qzv curve into git repository to visualize ASV stats
+scp root@10.19.139.167:/data/parkinsons/table.qzv .
