@@ -1,5 +1,10 @@
 # MICB 475: Data Science Research in Microbiology - Team 2 - Lab Notebook
 This document contains summaries of what was done throughout the project
+
+## February 26, 2024
+<img width="970" alt="image" src="https://github.com/Xpado-star/MICB-475-Team-2/assets/158794595/585a1732-3b90-4d0a-81b5-dffb9b7bf307">
+
+
 ## February 12, 2024
 David - Edited the R file, moved into R folder
 
