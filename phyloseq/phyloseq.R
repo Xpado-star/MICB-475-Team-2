@@ -53,6 +53,15 @@ class(TAX)
 
 #### create phyloseq object #####
 pd_phyloseq <- phyloseq(OTU, SAMP, TAX, phylotree)
+
+
+#### filter and process ####
+pd_filter <- subset_taxa(pd_phyloseq,  Domain == "d__Bacteria" & Class!="c__Chloroplast" & Family !="f__Mitochondria")
+pd_filter <- filter_taxa(pd_filter, function(x) sum(x)>5, prune = TRUE)
+
+pd_phyloseq <- pd_filter
+
+#### save as RData file ####
 save(pd_phyloseq, file = "phyloseq/pd_phyloseq.RData")
 
 
