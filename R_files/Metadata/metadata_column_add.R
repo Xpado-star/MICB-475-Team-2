@@ -36,7 +36,6 @@ pd_data_treatment <- pd_data_zero %>%
                                                         ifelse(Disease == "PD" & amantadine == 1 & (entacapone + pramipexole + rasagiline) == 0, 6,
                                                                ifelse(Disease == "PD" & (entacapone + pramipexole + rasagiline + amantadine) > 1, 7, NA))))))))
 
-
 pd_data_treatment <- arrange(pd_data_treatment, treatment)
 pd_data_treatment$treatment <- as.factor(pd_data_treatment$treatment)
 class(pd_data_treatment$treatment)
@@ -45,4 +44,4 @@ freq_table <- table(pd_data_treatment$treatment)
 freq_table
 
 save(pd_data_treatment, file = "pd_metadata_treatment.RData")
-write.table(pd_data_treatment, file="pd_metadata_treatment.txt", sep="\t", quote=FALSE)
+write.table(pd_data_treatment, file="pd_metadata_treatment.tsv", sep="\t", quote=FALSE, row.names = FALSE)
