@@ -51,7 +51,7 @@ res <- isa_df_1$sign %>%
   left_join(taxtable) %>%
   filter(p.value < 0.05) 
 
-# View results
+# View results1
 View(res)
 
 
@@ -60,25 +60,41 @@ res2 <- isa_df_2$sign %>%
   rownames_to_column(var="ASV") %>%
   left_join(taxtable) %>%
   filter(p.value < 0.05) 
-
+# View Results2
 View(res2)
 
-#making the table
+#making the table group 1 significance without any treatments
+group1_indi_table = res %>%
+  filter(s.1 == 1)
+
+group1_indi_table = group1_indi_table[,c(5,6,11,12)]
+group1_indi_table$Genus = gsub("g__","",group1_indi_table$Genus)
+group1_indi_table$Family = gsub("f__","",group1_indi_table$Family)
+
+
+#making the table group 2 significance without any treatments
 group2_indi_table = res %>%
   filter(s.2 == 1)
 
 group2_indi_table = group2_indi_table[,c(5,6,11,12)]
 group2_indi_table$Genus = gsub("g__","",group2_indi_table$Genus)
-
+group2_indi_table$Family = gsub("f__","",group2_indi_table$Family)
 write.csv(group2_indi_table, file = "Group1 indicator list.csv")
 
 
+#making the table group 6 significance specific to group 6
+group6_indi_table = res2 %>%
+  filter(s.6 == 1 & s.5 == 0 & s.4 == 0 & s.3 == 0 & s.2 == 0 & s.1 == 0)
+
+group6_indi_table = group6_indi_table[,c(9,10,15,16)]
+group6_indi_table$Genus = gsub("g__","",group6_indi_table$Genus)
+group6_indi_table$Family = gsub("f__","",group6_indi_table$Family)
 
 
 
 # create a list of dataframes to be written to separate sheets
-df_list <- list(group1_indi_table, group2_indi_table)
-names(df_list) <- c("Sheet1", "Sheet2")
+df_list <- list(group1_indi_table, group2_indi_table, group6_indi_table)
+names(df_list) <- c("Group1 w_o treatments", "Group 2 w_o treatments", "Group 6 w_treatments")
 
 # write the list to an Excel file
 write_xlsx(df_list, "output.xlsx")
