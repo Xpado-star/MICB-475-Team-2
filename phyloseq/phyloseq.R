@@ -65,3 +65,8 @@ pd_phyloseq <- pd_filter
 save(pd_phyloseq, file = "phyloseq/pd_phyloseq.RData")
 
 
+#### rarefy phyloseq object ####
+pd_rare <- rarefy_even_depth(pd_phyloseq, rngseed = 1, sample.size = 5421)
+
+#### save as RData file ####
+save(pd_rare, file = "phyloseq/pd_rare.RData")
