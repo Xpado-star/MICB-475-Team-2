@@ -90,6 +90,7 @@ dunnTest(Shannon ~ treatment,
 
 #none of the pairwise comparisons for any groups is significant
 
+# create final box plot
 shannons_final_comparison <- ggbetweenstats(
   data = samp_dat_wdiv,
   x = treatment,
@@ -128,10 +129,29 @@ ggsave(filename = "beta_diversity_treatment_wunifrac.png"
 ### BETA DIVERSITY STATISTICAL ANALYSIS ###
 dm_unifrac <- UniFrac(pd_rare, weighted=TRUE)
 data_frame_permanova <- data.frame(sample_data(pd_rare))
-adonis2(dm_unifrac ~ treatment, data=data_frame_permanova)
+adonis2(dm_unifrac ~ treatment, data=data_frame_permanova, permutations = 10000)
 #             Df SumOfSqs      R2 F      Pr(>F)  
 # treatment   6  0.03625 0.03715 1.8196  0.044 *
 # P = 0.044
+
+
+### BETA DIVERSITY WITH SUBSETS ###
+
+#example - groups 1 and 6 --> edit the line below to view all other comparisons
+pd_subset <- subset_samples(pd_rare, treatment == 1 | treatment == 6)
+
+distance_method_sub <- phyloseq::distance(pd_subset, method= 'wunifrac')
+pcoa_wunifrac_sub <- ordinate(pd_subset, method="PCoA", distance= distance_method_sub)
+gg_pcoa_sub <- plot_ordination(pd_subset, pcoa_wunifrac_sub, color = "treatment") +
+  labs(color = "Treatment") +
+  stat_ellipse()
+gg_pcoa_sub
+
+# PERMANOVA
+dm_unifrac_sub <- UniFrac(pd_subset, weighted=TRUE)
+data_frame_permanova_sub <- data.frame(sample_data(pd_subset))
+adonis2(dm_unifrac_sub ~ treatment, data=data_frame_permanova_sub, permutations = 10000)
+
 
 
 ### TAXONOMIC BAR PLOTS ###
