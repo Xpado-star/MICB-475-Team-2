@@ -10,7 +10,7 @@ library(vegan)
 #### Load data ####
 
 #load metadata RData from Git and rename to 'meta'
-load("R_files/Metadata/pd_metadata_treatment.Rdata")
+load("../R_files/Metadata/pd_metadata_treatment.Rdata")
 assign("meta", pd_data_treatment)
 
 

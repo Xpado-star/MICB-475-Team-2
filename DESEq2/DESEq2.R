@@ -4,7 +4,7 @@ library(DESeq2)
 
 #### DESeq ####
 # Convert phyloseq object to DESeq object
-load(".../.../phyloseq/pd_phyloseq.RData")
+load("../phyloseq/pd_phyloseq.RData")
 
 pd_plus1 <- transform_sample_counts(pd_phyloseq, function(x) x+1)
 pd_deseq <- phyloseq_to_deseq2(pd_plus1, ~`treatment`)
