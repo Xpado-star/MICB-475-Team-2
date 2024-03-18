@@ -224,6 +224,7 @@ bar_6_2
 wrap_plots(bar_3_1, bar_4_1, bar_5_1, bar_6_1, bar_3_2, bar_4_2, bar_5_2, bar_6_2, ncol = 4)
 
 
+
 ggsave(filename="bar_3_1.png",bar_3_1)
 ggsave(filename="bar_4_1.png",bar_4_1)
 ggsave(filename="bar_5_1.png",bar_5_1)
@@ -241,3 +242,13 @@ ggsave(filename="vol_3_2.png",vol_3_2)
 ggsave(filename="vol_4_2.png",vol_4_2)
 ggsave(filename="vol_5_2.png",vol_5_2)
 ggsave(filename="vol_6_2.png",vol_6_2)
+
+
+write.csv(sigASVs_3_1, file = "ASVs_3_1.csv", row.names = FALSE)
+write.csv(sigASVs_4_1, file = "ASVs_4_1.csv", row.names = FALSE)
+write.csv(sigASVs_5_1, file = "ASVs_5_1.csv", row.names = FALSE)
+write.csv(sigASVs_6_1, file = "ASVs_6_1.csv", row.names = FALSE)
+write.csv(sigASVs_3_2, file = "ASVs_3_2.csv", row.names = FALSE)
+write.csv(sigASVs_4_2, file = "ASVs_4_2.csv", row.names = FALSE)
+write.csv(sigASVs_5_2, file = "ASVs_5_2.csv", row.names = FALSE)
+write.csv(sigASVs_6_2, file = "ASVs_6_2.csv", row.names = FALSE)
