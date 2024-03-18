@@ -1,4 +1,4 @@
-setwd("D:/MICB-475/phyloseq")
+setwd("C:/MICB-475/R_files/Indicator Taxa")
 
 library(writexl)
 library(phyloseq)
@@ -90,11 +90,16 @@ group6_indi_table = group6_indi_table[,c(9,10,15,16)]
 group6_indi_table$Genus = gsub("g__","",group6_indi_table$Genus)
 group6_indi_table$Family = gsub("f__","",group6_indi_table$Family)
 
+#making the table group 6 in general, not filtering out anything
+group6gen_indi_table = res2 
 
+group6gen_indi_table = group6gen_indi_table[,c(1,2,3,4,5,6,7,9,10,15,16)]
+group6gen_indi_table$Genus = gsub("g__","",group6gen_indi_table$Genus)
+group6gen_indi_table$Family = gsub("f__","",group6gen_indi_table$Family)
 
 # create a list of dataframes to be written to separate sheets
-df_list <- list(group1_indi_table, group2_indi_table, group6_indi_table)
-names(df_list) <- c("Group1 w_o treatments", "Group 2 w_o treatments", "Group 6 w_treatments")
+df_list <- list(group1_indi_table, group2_indi_table, group6_indi_table, group6gen_indi_table)
+names(df_list) <- c("Group1 w_o treatments", "Group 2 w_o treatments", "Group 6 w_treatments", "Group 6 W_treatments all")
 
 # write the list to an Excel file
 write_xlsx(df_list, "output.xlsx")
