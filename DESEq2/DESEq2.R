@@ -121,10 +121,16 @@ sigASVs_3_1 <- sigASVs_3_1 %>%
 view(sigASVs_3_1)
 
 #3_1
+#bar_3_1 <- ggplot(sigASVs_3_1) +
+#  geom_bar(aes(x=Genus, y=log2FoldChange, fill = ifelse(log2FoldChange < 0, "blue", "red")), stat = "identity")+
+#  geom_errorbar(aes(x=Genus, ymin=log2FoldChange-lfcSE, ymax=log2FoldChange+lfcSE)) +
+#  theme(axis.text.x = element_text(angle=90, hjust=1, vjust=0.5)) + ggtitle("Group 3 vs 1") +
+#  theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) + theme(legend.position = "none")
+
 bar_3_1 <- ggplot(sigASVs_3_1) +
-  geom_bar(aes(x=Genus, y=log2FoldChange, fill = ifelse(log2FoldChange < 0, "blue", "red")), stat = "identity")+
-  geom_errorbar(aes(x=Genus, ymin=log2FoldChange-lfcSE, ymax=log2FoldChange+lfcSE)) +
-  theme(axis.text.x = element_text(angle=90, hjust=1, vjust=0.5)) + ggtitle("Group 3 vs 1") +
+  geom_bar(aes(x=log2FoldChange, y=Genus, fill = ifelse(log2FoldChange < 0, "blue", "red")), stat = "identity")+
+  geom_errorbar(aes(xmin=log2FoldChange-lfcSE, xmax=log2FoldChange+lfcSE, y=Genus)) +
+  theme(axis.text.x = element_text(angle=0, hjust=1, vjust=0.5)) + ggtitle("Group 3 vs 1") +
   theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) + theme(legend.position = "none")
 
 #4_1
@@ -140,9 +146,9 @@ sigASVs_4_1 <- tax_table(pd_DESeq_4_1) %>% as.data.frame() %>%
 sigASVs_4_1 <- sigASVs_4_1 %>%
   filter(!(is.na(Genus) | grepl("^NA\\.", Genus)))
 bar_4_1 <- ggplot(sigASVs_4_1) +
-  geom_bar(aes(x=Genus, y=log2FoldChange, fill = ifelse(log2FoldChange < 0, "blue", "red")), stat = "identity")+
-  geom_errorbar(aes(x=Genus, ymin=log2FoldChange-lfcSE, ymax=log2FoldChange+lfcSE)) +
-  theme(axis.text.x = element_text(angle=90, hjust=1, vjust=0.5)) + ggtitle("Group 4 vs 1") +
+  geom_bar(aes(x=log2FoldChange, y=Genus, fill = ifelse(log2FoldChange < 0, "blue", "red")), stat = "identity")+
+  geom_errorbar(aes(xmin=log2FoldChange-lfcSE, xmax=log2FoldChange+lfcSE, y=Genus)) +
+  theme(axis.text.x = element_text(angle=0, hjust=1, vjust=0.5)) + ggtitle("Group 4 vs 1") +
   theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) + theme(legend.position = "none")
 
 #5_1
@@ -158,9 +164,9 @@ sigASVs_5_1 <- tax_table(pd_DESeq_5_1) %>% as.data.frame() %>%
 sigASVs_5_1 <- sigASVs_5_1 %>%
   filter(!(is.na(Genus) | grepl("^NA\\.", Genus)))
 bar_5_1 <- ggplot(sigASVs_5_1) +
-  geom_bar(aes(x=Genus, y=log2FoldChange, fill = ifelse(log2FoldChange < 0, "blue", "red")), stat = "identity")+
-  geom_errorbar(aes(x=Genus, ymin=log2FoldChange-lfcSE, ymax=log2FoldChange+lfcSE)) +
-  theme(axis.text.x = element_text(angle=90, hjust=1, vjust=0.5)) + ggtitle("Group 5 vs 1") +
+  geom_bar(aes(x=log2FoldChange, y=Genus, fill = ifelse(log2FoldChange < 0, "blue", "red")), stat = "identity")+
+  geom_errorbar(aes(xmin=log2FoldChange-lfcSE, xmax=log2FoldChange+lfcSE, y=Genus)) +
+  theme(axis.text.x = element_text(angle=0, hjust=1, vjust=0.5)) + ggtitle("Group 5 vs 1") +
   theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) + theme(legend.position = "none")
 
 #6_1
@@ -176,9 +182,9 @@ sigASVs_6_1 <- tax_table(pd_DESeq_6_1) %>% as.data.frame() %>%
 sigASVs_6_1 <- sigASVs_6_1 %>%
   filter(!(is.na(Genus) | grepl("^NA\\.", Genus)))
 bar_6_1 <- ggplot(sigASVs_6_1) +
-  geom_bar(aes(x=Genus, y=log2FoldChange, fill = ifelse(log2FoldChange < 0, "blue", "red")), stat = "identity")+
-  geom_errorbar(aes(x=Genus, ymin=log2FoldChange-lfcSE, ymax=log2FoldChange+lfcSE)) +
-  theme(axis.text.x = element_text(angle=90, hjust=1, vjust=0.5)) + ggtitle("Group 6 vs 1") +
+  geom_bar(aes(x=log2FoldChange, y=Genus, fill = ifelse(log2FoldChange < 0, "blue", "red")), stat = "identity")+
+  geom_errorbar(aes(xmin=log2FoldChange-lfcSE, xmax=log2FoldChange+lfcSE, y=Genus)) +
+  theme(axis.text.x = element_text(angle=0, hjust=1, vjust=0.5)) + ggtitle("Group 6 vs 1") +
   theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) + theme(legend.position = "none")
 
 #3_2
@@ -194,9 +200,9 @@ sigASVs_3_2 <- tax_table(pd_DESeq_3_2) %>% as.data.frame() %>%
 sigASVs_3_2 <- sigASVs_3_2 %>%
   filter(!(is.na(Genus) | grepl("^NA\\.", Genus)))
 bar_3_2 <- ggplot(sigASVs_3_2) +
-  geom_bar(aes(x=Genus, y=log2FoldChange, fill = ifelse(log2FoldChange < 0, "blue", "red")), stat = "identity")+
-  geom_errorbar(aes(x=Genus, ymin=log2FoldChange-lfcSE, ymax=log2FoldChange+lfcSE)) +
-  theme(axis.text.x = element_text(angle=90, hjust=1, vjust=0.5)) + ggtitle("Group 3 vs 2") +
+  geom_bar(aes(x=log2FoldChange, y=Genus, fill = ifelse(log2FoldChange < 0, "blue", "red")), stat = "identity")+
+  geom_errorbar(aes(xmin=log2FoldChange-lfcSE, xmax=log2FoldChange+lfcSE, y=Genus)) +
+  theme(axis.text.x = element_text(angle=0, hjust=1, vjust=0.5)) + ggtitle("Group 3 vs 2") +
   theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) + theme(legend.position = "none")
 
 #4_2
@@ -212,9 +218,9 @@ sigASVs_4_2 <- tax_table(pd_DESeq_4_2) %>% as.data.frame() %>%
 sigASVs_4_2 <- sigASVs_4_2 %>%
   filter(!(is.na(Genus) | grepl("^NA\\.", Genus)))
 bar_4_2 <- ggplot(sigASVs_4_2) +
-  geom_bar(aes(x=Genus, y=log2FoldChange, fill = ifelse(log2FoldChange < 0, "blue", "red")), stat = "identity")+
-  geom_errorbar(aes(x=Genus, ymin=log2FoldChange-lfcSE, ymax=log2FoldChange+lfcSE)) +
-  theme(axis.text.x = element_text(angle=90, hjust=1, vjust=0.5)) + ggtitle("Group 4 vs 2") +
+  geom_bar(aes(x=log2FoldChange, y=Genus, fill = ifelse(log2FoldChange < 0, "blue", "red")), stat = "identity")+
+  geom_errorbar(aes(xmin=log2FoldChange-lfcSE, xmax=log2FoldChange+lfcSE, y=Genus)) +
+  theme(axis.text.x = element_text(angle=0, hjust=1, vjust=0.5)) + ggtitle("Group 4 vs 2") +
   theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) + theme(legend.position = "none")
 
 #5_2
@@ -230,9 +236,9 @@ sigASVs_5_2 <- tax_table(pd_DESeq_5_2) %>% as.data.frame() %>%
 sigASVs_5_2 <- sigASVs_5_2 %>%
   filter(!(is.na(Genus) | grepl("^NA\\.", Genus)))
 bar_5_2 <- ggplot(sigASVs_5_2) +
-  geom_bar(aes(x=Genus, y=log2FoldChange, fill = ifelse(log2FoldChange < 0, "blue", "red")), stat = "identity")+
-  geom_errorbar(aes(x=Genus, ymin=log2FoldChange-lfcSE, ymax=log2FoldChange+lfcSE)) +
-  theme(axis.text.x = element_text(angle=90, hjust=1, vjust=0.5)) + ggtitle("Group 5 vs 2") +
+  geom_bar(aes(x=log2FoldChange, y=Genus, fill = ifelse(log2FoldChange < 0, "blue", "red")), stat = "identity")+
+  geom_errorbar(aes(xmin=log2FoldChange-lfcSE, xmax=log2FoldChange+lfcSE, y=Genus)) +
+  theme(axis.text.x = element_text(angle=0, hjust=1, vjust=0.5)) + ggtitle("Group 5 vs 2") +
   theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) + theme(legend.position = "none")
 
 #6_2
@@ -248,10 +254,11 @@ sigASVs_6_2 <- tax_table(pd_DESeq_6_2) %>% as.data.frame() %>%
 sigASVs_6_2 <- sigASVs_6_2 %>%
   filter(!(is.na(Genus) | grepl("^NA\\.", Genus)))
 bar_6_2 <- ggplot(sigASVs_6_2) +
-  geom_bar(aes(x=Genus, y=log2FoldChange, fill = ifelse(log2FoldChange < 0, "blue", "red")), stat = "identity")+
-  geom_errorbar(aes(x=Genus, ymin=log2FoldChange-lfcSE, ymax=log2FoldChange+lfcSE)) +
-  theme(axis.text.x = element_text(angle=90, hjust=1, vjust=0.5)) + ggtitle("Group 6 vs 2") +
+  geom_bar(aes(x=log2FoldChange, y=Genus, fill = ifelse(log2FoldChange < 0, "blue", "red")), stat = "identity")+
+  geom_errorbar(aes(xmin=log2FoldChange-lfcSE, xmax=log2FoldChange+lfcSE, y=Genus)) +
+  theme(axis.text.x = element_text(angle=0, hjust=1, vjust=0.5)) + ggtitle("Group 6 vs 2") +
   theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) + theme(legend.position = "none")
+
 
 bar_3_1
 bar_4_1
