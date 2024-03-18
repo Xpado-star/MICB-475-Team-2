@@ -27,13 +27,13 @@ pd_amant <- subset_samples(pd_RA, treatment =="6")
 pd_combo <- subset_samples(pd_RA, treatment =="7")
 
 #### set detection threshold at 2% and prevalence at 50%
-control_ASVs <- core_members(pd_control, detection=0.02, prevalence = 0.5)
-untreat_ASVs <- core_members(pd_untreat, detection=0.02, prevalence = 0.5)
-entac_ASVs <- core_members(pd_entac, detection=0.02, prevalence = 0.5)
-prami_ASVs <- core_members(pd_prami, detection=0.02, prevalence = 0.5)
-rasag_ASVs <- core_members(pd_rasag, detection=0.02, prevalence = 0.5)
-amant_ASVs <- core_members(pd_amant, detection=0.02, prevalence = 0.5)
-combo_ASVs <- core_members(pd_combo, detection=0.02, prevalence = 0.5)
+control_ASVs <- core_members(pd_control, detection=0.01, prevalence = 0.5)
+untreat_ASVs <- core_members(pd_untreat, detection=0.01, prevalence = 0.5)
+entac_ASVs <- core_members(pd_entac, detection=0.01, prevalence = 0.5)
+prami_ASVs <- core_members(pd_prami, detection=0.01, prevalence = 0.5)
+rasag_ASVs <- core_members(pd_rasag, detection=0.01, prevalence = 0.5)
+amant_ASVs <- core_members(pd_amant, detection=0.01, prevalence = 0.5)
+combo_ASVs <- core_members(pd_combo, detection=0.01, prevalence = 0.5)
 
 #### compare 2 groups
 compare_1_3 <- list(Control = control_ASVs, Entacapone = entac_ASVs)
@@ -68,10 +68,11 @@ species_names <- as.character(tax_table(treatment_group)[, "Species"])
 genus_species <- paste(genus_names, species_names)
 
 #### code used for the species excel form
-species <- tax_mat[com_ASVs, ]
+#need to load object tax_mat from phyloseq code first, location: phyloseq/phyloseq.R
+species <- tax_mat[untreat_ASVs, ]
 
 #### list ASV ids
-ItemsList <- venn(compare_1_5, show.plot = FALSE)
+ItemsList <- venn(compare_1_3, show.plot = FALSE)
 attributes(ItemsList)$intersections # list common ASV id
 venn_list <- VennDiagram::get.venn.partitions(compare_2_3)
 
