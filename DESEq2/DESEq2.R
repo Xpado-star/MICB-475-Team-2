@@ -2,6 +2,7 @@ library(tidyverse)
 library(phyloseq)
 library(DESeq2)
 library(patchwork)
+library(ggrepel)
 
 #### DESeq ####
 # Convert phyloseq object to DESeq object
@@ -252,3 +253,87 @@ write.csv(sigASVs_3_2, file = "ASVs_3_2.csv", row.names = FALSE)
 write.csv(sigASVs_4_2, file = "ASVs_4_2.csv", row.names = FALSE)
 write.csv(sigASVs_5_2, file = "ASVs_5_2.csv", row.names = FALSE)
 write.csv(sigASVs_6_2, file = "ASVs_6_2.csv", row.names = FALSE)
+
+####  If we want labels on the volcano plots  ####
+vol_3_1 <- res_3_1 %>% 
+  mutate(significant = padj < 0.01 & abs(log2FoldChange) > 2) %>%
+  ggplot() + 
+  geom_point(aes(x = log2FoldChange, y = -log10(padj), col = significant)) +
+  geom_text_repel(data = sigASVs_3_1, aes(x = log2FoldChange, y = -log10(padj), label = Genus), 
+                  box.padding = 0.5, point.padding = 0.5) + 
+  ggtitle("Group 3 vs 1") +
+  theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) + 
+  theme(legend.position = "none")
+
+vol_4_1 <- res_4_1 %>% 
+  mutate(significant = padj < 0.01 & abs(log2FoldChange) > 2) %>%
+  ggplot() + 
+  geom_point(aes(x = log2FoldChange, y = -log10(padj), col = significant)) +
+  geom_text_repel(data = sigASVs_4_1, aes(x = log2FoldChange, y = -log10(padj), label = Genus), 
+                  box.padding = 0.5, point.padding = 0.5) + 
+  ggtitle("Group 4 vs 1") +
+  theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) + 
+  theme(legend.position = "none")
+
+vol_5_1 <- res_5_1 %>% 
+  mutate(significant = padj < 0.01 & abs(log2FoldChange) > 2) %>%
+  ggplot() + 
+  geom_point(aes(x = log2FoldChange, y = -log10(padj), col = significant)) +
+  geom_text_repel(data = sigASVs_5_1, aes(x = log2FoldChange, y = -log10(padj), label = Genus), 
+                  box.padding = 0.5, point.padding = 0.5) + 
+  ggtitle("Group 5 vs 1") +
+  theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) + 
+  theme(legend.position = "none")
+
+vol_6_1 <- res_6_1 %>% 
+  mutate(significant = padj < 0.01 & abs(log2FoldChange) > 2) %>%
+  ggplot() + 
+  geom_point(aes(x = log2FoldChange, y = -log10(padj), col = significant)) +
+  geom_text_repel(data = sigASVs_6_1, aes(x = log2FoldChange, y = -log10(padj), label = Genus), 
+                  box.padding = 0.5, point.padding = 0.5) + 
+  ggtitle("Group 6 vs 1") +
+  theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) + 
+  theme(legend.position = "none")
+
+vol_3_2 <- res_3_2 %>% 
+  mutate(significant = padj < 0.01 & abs(log2FoldChange) > 2) %>%
+  ggplot() + 
+  geom_point(aes(x = log2FoldChange, y = -log10(padj), col = significant)) +
+  geom_text_repel(data = sigASVs_3_2, aes(x = log2FoldChange, y = -log10(padj), label = Genus), 
+                  box.padding = 0.5, point.padding = 0.5) + 
+  ggtitle("Group 3 vs 2") +
+  theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) + 
+  theme(legend.position = "none")
+
+vol_4_2 <- res_4_2 %>% 
+  mutate(significant = padj < 0.01 & abs(log2FoldChange) > 2) %>%
+  ggplot() + 
+  geom_point(aes(x = log2FoldChange, y = -log10(padj), col = significant)) +
+  geom_text_repel(data = sigASVs_4_2, aes(x = log2FoldChange, y = -log10(padj), label = Genus), 
+                  box.padding = 0.5, point.padding = 0.5) + 
+  ggtitle("Group 4 vs 2") +
+  theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) + 
+  theme(legend.position = "none")
+
+vol_5_2 <- res_5_2 %>% 
+  mutate(significant = padj < 0.01 & abs(log2FoldChange) > 2) %>%
+  ggplot() + 
+  geom_point(aes(x = log2FoldChange, y = -log10(padj), col = significant)) +
+  geom_text_repel(data = sigASVs_5_2, aes(x = log2FoldChange, y = -log10(padj), label = Genus), 
+                  box.padding = 0.5, point.padding = 0.5) + 
+  ggtitle("Group 5 vs 2") +
+  theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) + 
+  theme(legend.position = "none")
+
+vol_6_2 <- res_6_2 %>% 
+  mutate(significant = padj < 0.01 & abs(log2FoldChange) > 2) %>%
+  ggplot() + 
+  geom_point(aes(x = log2FoldChange, y = -log10(padj), col = significant)) +
+  geom_text_repel(data = sigASVs_6_2, aes(x = log2FoldChange, y = -log10(padj), label = Genus), 
+                  box.padding = 0.5, point.padding = 0.5) + 
+  ggtitle("Group 6 vs 2") +
+  theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) + 
+  theme(legend.position = "none")
+
+wrap_plots(vol_3_1, vol_4_1, vol_5_1, vol_6_1)
+wrap_plots(vol_3_2, vol_4_2, vol_5_2, vol_6_2)
