@@ -1,16 +1,9 @@
-install.packages("tidyverse")
-if (!require("BiocManager", quietly = TRUE))
-  install.packages("BiocManager")
-BiocManager::install("phyloseq")
-BiocManager::install("DESeq2")
-install.packages("patchwork")
-
 library(tidyverse)
 library(phyloseq)
 library(DESeq2)
 library(patchwork)
 library(ggrepel)
-
+library(dplyr)
 #### DESeq ####
 # Convert phyloseq object to DESeq object
 load("../phyloseq/pd_phyloseq.RData")
@@ -103,7 +96,12 @@ wrap_plots(vol_3_1, vol_4_1, vol_5_1, vol_6_1, vol_3_2, vol_4_2, vol_5_2, vol_6_
 ####  Bar Plots ####
 #3_1
 # To get table of results
-sigASVs_3_1 <- res_3_1 %>% filter(padj<0.01 & abs(log2FoldChange)>2) %>% dplyr::rename(ASV=row)
+sigASVs_3_1 <- res_3_1 %>%
+  filter(padj < 0.01 & abs(log2FoldChange) > 2) %>%
+  dplyr::rename(ASV = row) %>%
+  arrange(log2FoldChange) %>%
+  group_by(sign(log2FoldChange)) %>%
+  slice_head(n = 11)
 
 # Get only asv names
 sigASVs_vec_3_1 <- sigASVs_3_1 %>% pull(ASV)
@@ -121,14 +119,28 @@ sigASVs_3_1 <- sigASVs_3_1 %>%
 view(sigASVs_3_1)
 
 #3_1
+#bar_3_1 <- ggplot(sigASVs_3_1) +
+#  geom_bar(aes(x=Genus, y=log2FoldChange, fill = ifelse(log2FoldChange < 0, "blue", "red")), stat = "identity")+
+#  geom_errorbar(aes(x=Genus, ymin=log2FoldChange-lfcSE, ymax=log2FoldChange+lfcSE)) +
+#  theme(axis.text.x = element_text(angle=90, hjust=1, vjust=0.5)) + ggtitle("Group 3 vs 1") +
+#  theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) + theme(legend.position = "none")
+
 bar_3_1 <- ggplot(sigASVs_3_1) +
-  geom_bar(aes(x=Genus, y=log2FoldChange, fill = ifelse(log2FoldChange < 0, "blue", "red")), stat = "identity")+
-  geom_errorbar(aes(x=Genus, ymin=log2FoldChange-lfcSE, ymax=log2FoldChange+lfcSE)) +
-  theme(axis.text.x = element_text(angle=90, hjust=1, vjust=0.5)) + ggtitle("Group 3 vs 1") +
-  theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) + theme(legend.position = "none")
+  geom_bar(aes(x=log2FoldChange, y=Genus, fill = factor(log2FoldChange < 0)), stat = "identity") +
+  geom_errorbar(aes(xmin=log2FoldChange-lfcSE, xmax=log2FoldChange+lfcSE, y=Genus)) +
+  scale_fill_manual(values = c("TRUE" = "sienna1", "FALSE" = "#9ACD32")) +
+  theme(axis.text.x = element_text(angle=0, hjust=1, vjust=0.5)) +
+  ggtitle("Entacapone vs Non-PD") +
+  theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) +
+  theme(legend.position = "none")
 
 #4_1
-sigASVs_4_1 <- res_4_1 %>% filter(padj<0.01 & abs(log2FoldChange)>2) %>% dplyr::rename(ASV=row)
+sigASVs_4_1 <- res_4_1 %>%
+  filter(padj < 0.01 & abs(log2FoldChange) > 2) %>%
+  dplyr::rename(ASV = row) %>%
+  arrange(log2FoldChange) %>%
+  group_by(sign(log2FoldChange)) %>%
+  slice_head(n = 11)
 sigASVs_vec_4_1 <- sigASVs_4_1 %>% pull(ASV)
 pd_DESeq_4_1 <- prune_taxa(sigASVs_vec_4_1,pd_phyloseq)
 sigASVs_4_1 <- tax_table(pd_DESeq_4_1) %>% as.data.frame() %>%
@@ -140,13 +152,21 @@ sigASVs_4_1 <- tax_table(pd_DESeq_4_1) %>% as.data.frame() %>%
 sigASVs_4_1 <- sigASVs_4_1 %>%
   filter(!(is.na(Genus) | grepl("^NA\\.", Genus)))
 bar_4_1 <- ggplot(sigASVs_4_1) +
-  geom_bar(aes(x=Genus, y=log2FoldChange, fill = ifelse(log2FoldChange < 0, "blue", "red")), stat = "identity")+
-  geom_errorbar(aes(x=Genus, ymin=log2FoldChange-lfcSE, ymax=log2FoldChange+lfcSE)) +
-  theme(axis.text.x = element_text(angle=90, hjust=1, vjust=0.5)) + ggtitle("Group 4 vs 1") +
-  theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) + theme(legend.position = "none")
+  geom_bar(aes(x=log2FoldChange, y=Genus, fill = factor(log2FoldChange < 0)), stat = "identity") +
+  geom_errorbar(aes(xmin=log2FoldChange-lfcSE, xmax=log2FoldChange+lfcSE, y=Genus)) +
+  scale_fill_manual(values = c("TRUE" = "sienna1", "FALSE" = "#569866")) +
+  theme(axis.text.x = element_text(angle=0, hjust=1, vjust=0.5)) +
+  ggtitle("Pramipexole vs Non-PD") +
+  theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) +
+  theme(legend.position = "none")
 
 #5_1
-sigASVs_5_1 <- res_5_1 %>% filter(padj<0.01 & abs(log2FoldChange)>2) %>% dplyr::rename(ASV=row)
+sigASVs_5_1 <- res_5_1 %>%
+  filter(padj < 0.01 & abs(log2FoldChange) > 2) %>%
+  dplyr::rename(ASV = row) %>%
+  arrange(log2FoldChange) %>%
+  group_by(sign(log2FoldChange)) %>%
+  slice_head(n = 11)
 sigASVs_vec_5_1 <- sigASVs_5_1 %>% pull(ASV)
 pd_DESeq_5_1 <- prune_taxa(sigASVs_vec_5_1,pd_phyloseq)
 sigASVs_5_1 <- tax_table(pd_DESeq_5_1) %>% as.data.frame() %>%
@@ -158,13 +178,21 @@ sigASVs_5_1 <- tax_table(pd_DESeq_5_1) %>% as.data.frame() %>%
 sigASVs_5_1 <- sigASVs_5_1 %>%
   filter(!(is.na(Genus) | grepl("^NA\\.", Genus)))
 bar_5_1 <- ggplot(sigASVs_5_1) +
-  geom_bar(aes(x=Genus, y=log2FoldChange, fill = ifelse(log2FoldChange < 0, "blue", "red")), stat = "identity")+
-  geom_errorbar(aes(x=Genus, ymin=log2FoldChange-lfcSE, ymax=log2FoldChange+lfcSE)) +
-  theme(axis.text.x = element_text(angle=90, hjust=1, vjust=0.5)) + ggtitle("Group 5 vs 1") +
-  theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) + theme(legend.position = "none")
+  geom_bar(aes(x=log2FoldChange, y=Genus, fill = factor(log2FoldChange < 0)), stat = "identity") +
+  geom_errorbar(aes(xmin=log2FoldChange-lfcSE, xmax=log2FoldChange+lfcSE, y=Genus)) +
+  scale_fill_manual(values = c("TRUE" = "sienna1", "FALSE" = "#104E8B")) +
+  theme(axis.text.x = element_text(angle=0, hjust=1, vjust=0.5)) +
+  ggtitle("Rasagiline vs Non-PD") +
+  theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) +
+  theme(legend.position = "none")
 
 #6_1
-sigASVs_6_1 <- res_6_1 %>% filter(padj<0.01 & abs(log2FoldChange)>2) %>% dplyr::rename(ASV=row)
+sigASVs_6_1 <- res_6_1 %>%
+  filter(padj < 0.01 & abs(log2FoldChange) > 2) %>%
+  dplyr::rename(ASV = row) %>%
+  arrange(log2FoldChange) %>%
+  group_by(sign(log2FoldChange)) %>%
+  slice_head(n = 11)
 sigASVs_vec_6_1 <- sigASVs_6_1 %>% pull(ASV)
 pd_DESeq_6_1 <- prune_taxa(sigASVs_vec_6_1,pd_phyloseq)
 sigASVs_6_1 <- tax_table(pd_DESeq_6_1) %>% as.data.frame() %>%
@@ -176,13 +204,21 @@ sigASVs_6_1 <- tax_table(pd_DESeq_6_1) %>% as.data.frame() %>%
 sigASVs_6_1 <- sigASVs_6_1 %>%
   filter(!(is.na(Genus) | grepl("^NA\\.", Genus)))
 bar_6_1 <- ggplot(sigASVs_6_1) +
-  geom_bar(aes(x=Genus, y=log2FoldChange, fill = ifelse(log2FoldChange < 0, "blue", "red")), stat = "identity")+
-  geom_errorbar(aes(x=Genus, ymin=log2FoldChange-lfcSE, ymax=log2FoldChange+lfcSE)) +
-  theme(axis.text.x = element_text(angle=90, hjust=1, vjust=0.5)) + ggtitle("Group 6 vs 1") +
-  theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) + theme(legend.position = "none")
+  geom_bar(aes(x=log2FoldChange, y=Genus, fill = factor(log2FoldChange < 0)), stat = "identity") +
+  geom_errorbar(aes(xmin=log2FoldChange-lfcSE, xmax=log2FoldChange+lfcSE, y=Genus)) +
+  scale_fill_manual(values = c("TRUE" = "sienna1", "FALSE" = "steelblue2")) +
+  theme(axis.text.x = element_text(angle=0, hjust=1, vjust=0.5)) +
+  ggtitle("Amantadine vs Non-PD") +
+  theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) +
+  theme(legend.position = "none")
 
 #3_2
-sigASVs_3_2 <- res_3_2 %>% filter(padj<0.01 & abs(log2FoldChange)>2) %>% dplyr::rename(ASV=row)
+sigASVs_3_2 <- res_3_2 %>%
+  filter(padj < 0.01 & abs(log2FoldChange) > 2) %>%
+  dplyr::rename(ASV = row) %>%
+  arrange(log2FoldChange) %>%
+  group_by(sign(log2FoldChange)) %>%
+  slice_head(n = 11)
 sigASVs_vec_3_2 <- sigASVs_3_2 %>% pull(ASV)
 pd_DESeq_3_2 <- prune_taxa(sigASVs_vec_3_2,pd_phyloseq)
 sigASVs_3_2 <- tax_table(pd_DESeq_3_2) %>% as.data.frame() %>%
@@ -194,13 +230,21 @@ sigASVs_3_2 <- tax_table(pd_DESeq_3_2) %>% as.data.frame() %>%
 sigASVs_3_2 <- sigASVs_3_2 %>%
   filter(!(is.na(Genus) | grepl("^NA\\.", Genus)))
 bar_3_2 <- ggplot(sigASVs_3_2) +
-  geom_bar(aes(x=Genus, y=log2FoldChange, fill = ifelse(log2FoldChange < 0, "blue", "red")), stat = "identity")+
-  geom_errorbar(aes(x=Genus, ymin=log2FoldChange-lfcSE, ymax=log2FoldChange+lfcSE)) +
-  theme(axis.text.x = element_text(angle=90, hjust=1, vjust=0.5)) + ggtitle("Group 3 vs 2") +
-  theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) + theme(legend.position = "none")
+  geom_bar(aes(x=log2FoldChange, y=Genus, fill = factor(log2FoldChange < 0)), stat = "identity") +
+  geom_errorbar(aes(xmin=log2FoldChange-lfcSE, xmax=log2FoldChange+lfcSE, y=Genus)) +
+  scale_fill_manual(values = c("TRUE" = "indianred2", "FALSE" = "#9ACD32")) +
+  theme(axis.text.x = element_text(angle=0, hjust=1, vjust=0.5)) +
+  ggtitle("Entacapone vs PD-untreated") +
+  theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) +
+  theme(legend.position = "none")
 
 #4_2
-sigASVs_4_2 <- res_4_2 %>% filter(padj<0.01 & abs(log2FoldChange)>2) %>% dplyr::rename(ASV=row)
+sigASVs_4_2 <- res_4_2 %>%
+  filter(padj < 0.01 & abs(log2FoldChange) > 2) %>%
+  dplyr::rename(ASV = row) %>%
+  arrange(log2FoldChange) %>%
+  group_by(sign(log2FoldChange)) %>%
+  slice_head(n = 11)
 sigASVs_vec_4_2 <- sigASVs_4_2 %>% pull(ASV)
 pd_DESeq_4_2 <- prune_taxa(sigASVs_vec_4_2,pd_phyloseq)
 sigASVs_4_2 <- tax_table(pd_DESeq_4_2) %>% as.data.frame() %>%
@@ -212,13 +256,21 @@ sigASVs_4_2 <- tax_table(pd_DESeq_4_2) %>% as.data.frame() %>%
 sigASVs_4_2 <- sigASVs_4_2 %>%
   filter(!(is.na(Genus) | grepl("^NA\\.", Genus)))
 bar_4_2 <- ggplot(sigASVs_4_2) +
-  geom_bar(aes(x=Genus, y=log2FoldChange, fill = ifelse(log2FoldChange < 0, "blue", "red")), stat = "identity")+
-  geom_errorbar(aes(x=Genus, ymin=log2FoldChange-lfcSE, ymax=log2FoldChange+lfcSE)) +
-  theme(axis.text.x = element_text(angle=90, hjust=1, vjust=0.5)) + ggtitle("Group 4 vs 2") +
-  theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) + theme(legend.position = "none")
+  geom_bar(aes(x=log2FoldChange, y=Genus, fill = factor(log2FoldChange < 0)), stat = "identity") +
+  geom_errorbar(aes(xmin=log2FoldChange-lfcSE, xmax=log2FoldChange+lfcSE, y=Genus)) +
+  scale_fill_manual(values = c("TRUE" = "indianred2", "FALSE" = "#569866")) +
+  theme(axis.text.x = element_text(angle=0, hjust=1, vjust=0.5)) +
+  ggtitle("Pramipexole vs PD-untreated") +
+  theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) +
+  theme(legend.position = "none")
 
 #5_2
-sigASVs_5_2 <- res_5_2 %>% filter(padj<0.01 & abs(log2FoldChange)>2) %>% dplyr::rename(ASV=row)
+sigASVs_5_2 <- res_5_2 %>%
+  filter(padj < 0.01 & abs(log2FoldChange) > 2) %>%
+  dplyr::rename(ASV = row) %>%
+  arrange(log2FoldChange) %>%
+  group_by(sign(log2FoldChange)) %>%
+  slice_head(n = 11)
 sigASVs_vec_5_2 <- sigASVs_5_2 %>% pull(ASV)
 pd_DESeq_5_2 <- prune_taxa(sigASVs_vec_5_2,pd_phyloseq)
 sigASVs_5_2 <- tax_table(pd_DESeq_5_2) %>% as.data.frame() %>%
@@ -230,13 +282,21 @@ sigASVs_5_2 <- tax_table(pd_DESeq_5_2) %>% as.data.frame() %>%
 sigASVs_5_2 <- sigASVs_5_2 %>%
   filter(!(is.na(Genus) | grepl("^NA\\.", Genus)))
 bar_5_2 <- ggplot(sigASVs_5_2) +
-  geom_bar(aes(x=Genus, y=log2FoldChange, fill = ifelse(log2FoldChange < 0, "blue", "red")), stat = "identity")+
-  geom_errorbar(aes(x=Genus, ymin=log2FoldChange-lfcSE, ymax=log2FoldChange+lfcSE)) +
-  theme(axis.text.x = element_text(angle=90, hjust=1, vjust=0.5)) + ggtitle("Group 5 vs 2") +
-  theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) + theme(legend.position = "none")
+  geom_bar(aes(x=log2FoldChange, y=Genus, fill = factor(log2FoldChange < 0)), stat = "identity") +
+  geom_errorbar(aes(xmin=log2FoldChange-lfcSE, xmax=log2FoldChange+lfcSE, y=Genus)) +
+  scale_fill_manual(values = c("TRUE" = "indianred2", "FALSE" = "#104E8B")) +
+  theme(axis.text.x = element_text(angle=0, hjust=1, vjust=0.5)) +
+  ggtitle("Rasagiline vs PD-untreated") +
+  theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) +
+  theme(legend.position = "none")
 
 #6_2
-sigASVs_6_2 <- res_6_2 %>% filter(padj<0.01 & abs(log2FoldChange)>2) %>% dplyr::rename(ASV=row)
+sigASVs_6_2 <- res_6_2 %>%
+  filter(padj < 0.01 & abs(log2FoldChange) > 2) %>%
+  dplyr::rename(ASV = row) %>%
+  arrange(log2FoldChange) %>%
+  group_by(sign(log2FoldChange)) %>%
+  slice_head(n = 11)
 sigASVs_vec_6_2 <- sigASVs_6_2 %>% pull(ASV)
 pd_DESeq_6_2 <- prune_taxa(sigASVs_vec_6_2,pd_phyloseq)
 sigASVs_6_2 <- tax_table(pd_DESeq_6_2) %>% as.data.frame() %>%
@@ -248,10 +308,14 @@ sigASVs_6_2 <- tax_table(pd_DESeq_6_2) %>% as.data.frame() %>%
 sigASVs_6_2 <- sigASVs_6_2 %>%
   filter(!(is.na(Genus) | grepl("^NA\\.", Genus)))
 bar_6_2 <- ggplot(sigASVs_6_2) +
-  geom_bar(aes(x=Genus, y=log2FoldChange, fill = ifelse(log2FoldChange < 0, "blue", "red")), stat = "identity")+
-  geom_errorbar(aes(x=Genus, ymin=log2FoldChange-lfcSE, ymax=log2FoldChange+lfcSE)) +
-  theme(axis.text.x = element_text(angle=90, hjust=1, vjust=0.5)) + ggtitle("Group 6 vs 2") +
-  theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) + theme(legend.position = "none")
+  geom_bar(aes(x=log2FoldChange, y=Genus, fill = factor(log2FoldChange < 0)), stat = "identity") +
+  geom_errorbar(aes(xmin=log2FoldChange-lfcSE, xmax=log2FoldChange+lfcSE, y=Genus)) +
+  scale_fill_manual(values = c("TRUE" = "indianred2", "FALSE" = "steelblue2")) +
+  theme(axis.text.x = element_text(angle=0, hjust=1, vjust=0.5)) +
+  ggtitle("Amantadine vs PD-untreated") +
+  theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) +
+  theme(legend.position = "none")
+
 
 bar_3_1
 bar_4_1
@@ -265,14 +329,14 @@ wrap_plots(bar_3_1, bar_4_1, bar_5_1, bar_6_1, bar_3_2, bar_4_2, bar_5_2, bar_6_
 
 
 
-ggsave(filename="bar_3_1.png",bar_3_1)
-ggsave(filename="bar_4_1.png",bar_4_1)
-ggsave(filename="bar_5_1.png",bar_5_1)
-ggsave(filename="bar_6_1.png",bar_6_1)
-ggsave(filename="bar_3_2.png",bar_3_2)
-ggsave(filename="bar_4_2.png",bar_4_2)
-ggsave(filename="bar_5_2.png",bar_5_2)
-ggsave(filename="bar_6_2.png",bar_6_2)
+ggsave(filename="bar_3_1.png",bar_3_1, width = 7, height = 10)
+ggsave(filename="bar_4_1.png",bar_4_1, width = 7, height = 10)
+ggsave(filename="bar_5_1.png",bar_5_1, width = 7, height = 10)
+ggsave(filename="bar_6_1.png",bar_6_1, width = 7, height = 10)
+ggsave(filename="bar_3_2.png",bar_3_2, width = 7, height = 10)
+ggsave(filename="bar_4_2.png",bar_4_2, width = 7, height = 10)
+ggsave(filename="bar_5_2.png",bar_5_2, width = 7, height = 10)
+ggsave(filename="bar_6_2.png",bar_6_2, width = 7, height = 10)
 
 ggsave(filename="vol_3_1.png",vol_3_1)
 ggsave(filename="vol_4_1.png",vol_4_1)
