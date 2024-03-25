@@ -27,13 +27,13 @@ pd_amant <- subset_samples(pd_RA, treatment =="6")
 pd_combo <- subset_samples(pd_RA, treatment =="7")
 
 #### set detection threshold at 2% and prevalence at 50%
-control_ASVs <- core_members(pd_control, detection=0.01, prevalence = 0.5)
-untreat_ASVs <- core_members(pd_untreat, detection=0.01, prevalence = 0.5)
-entac_ASVs <- core_members(pd_entac, detection=0.01, prevalence = 0.5)
-prami_ASVs <- core_members(pd_prami, detection=0.01, prevalence = 0.5)
-rasag_ASVs <- core_members(pd_rasag, detection=0.01, prevalence = 0.5)
-amant_ASVs <- core_members(pd_amant, detection=0.01, prevalence = 0.5)
-combo_ASVs <- core_members(pd_combo, detection=0.01, prevalence = 0.5)
+control_ASVs <- core_members(pd_control, detection=0.02, prevalence = 0.5)
+untreat_ASVs <- core_members(pd_untreat, detection=0.02, prevalence = 0.5)
+entac_ASVs <- core_members(pd_entac, detection=0.02, prevalence = 0.5)
+prami_ASVs <- core_members(pd_prami, detection=0.02, prevalence = 0.5)
+rasag_ASVs <- core_members(pd_rasag, detection=0.02, prevalence = 0.5)
+amant_ASVs <- core_members(pd_amant, detection=0.02, prevalence = 0.5)
+combo_ASVs <- core_members(pd_combo, detection=0.02, prevalence = 0.5)
 
 #### compare 2 groups
 compare_1_3 <- list(Control = control_ASVs, Entacapone = entac_ASVs)
@@ -75,4 +75,28 @@ species <- tax_mat[untreat_ASVs, ]
 ItemsList <- venn(compare_1_3, show.plot = FALSE)
 attributes(ItemsList)$intersections # list common ASV id
 venn_list <- VennDiagram::get.venn.partitions(compare_2_3)
+
+#Using a different venn doagram library
+install.packages("ggvenn")
+library(ggvenn)
+
+
+#making a list with all the groups
+treatments = list(control = control_ASVs,
+                  pd = untreat_ASVs,
+                  entac = entac_ASVs,
+                  prami = prami_ASVs,
+                  rasag = rasag_ASVs,
+                  amant = amant_ASVs,
+                  combo = combo_ASVs)
+
+
+#calling the ggvenn function and specifiying which groups to plot
+#I suggest you do 3-way venn diagrams and cycle through the drug treatments so you can see how each drug affects the core 
+#of control and untreated PD.
+
+#example plotting code for the first two drugs
+ggvenn(treatments, c("control", "pd", "entac"), fill_color = c("blue","green","red"))
+ggvenn(treatments, c("control", "pd", "prami"), fill_color = c("blue","green","yellow"))
+
 
