@@ -3,9 +3,7 @@ library(phyloseq)
 library(microbiome)
 library(ggVennDiagram)
 library("sf")
-install.packages("gplots")
 library(gplots)
-install.packages("VennDiagram")
 library(VennDiagram)
 
 setwd("~/Desktop/MICB-475-Team-2")
@@ -77,7 +75,6 @@ attributes(ItemsList)$intersections # list common ASV id
 venn_list <- VennDiagram::get.venn.partitions(compare_2_3)
 
 #Using a different venn doagram library
-install.packages("ggvenn")
 library(ggvenn)
 
 
