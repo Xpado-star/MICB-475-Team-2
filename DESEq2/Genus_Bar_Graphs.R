@@ -48,6 +48,7 @@ df_joined <- df_joined %>%
   filter(treatment != 7) %>%
   rename(Treatment = treatment)
 
+save(df_joined, file="bifidobac_abs.RData")
 
 #Calculate the sum of relative abundance for each treatment
 df_sumed = df_joined %>%
@@ -124,6 +125,8 @@ df_joined <- df_joined <- df_joined %>%
   filter(treatment != 7) %>%
   rename(Treatment = treatment)
 
+prevotella_data <- df_joined
+save(prevotella_data, file="prevotella_abs.RData")
 
 #Calculate the sum of relative abundance for each treatment
 df_sumed = df_joined %>%
@@ -181,6 +184,12 @@ df_joined$treatment = dplyr::recode(df_joined$treatment,
 df_joined <- df_joined <- df_joined %>%
   filter(treatment != 7) %>%
   rename(Treatment = treatment)
+
+#SAVE FOR REGRESSION
+lachnos_data <- df_joined
+save(lachnos_data, file="lachnos_abs.RData")
+
+
 df_sumed = df_joined %>%
   group_by(Treatment) %>%
   summarise(sum_abs = sum(abs))
@@ -233,6 +242,12 @@ df_joined$treatment = dplyr::recode(df_joined$treatment,
 df_joined <- df_joined <- df_joined %>%
   filter(treatment != 7) %>%
   rename(Treatment = treatment)
+
+#SAVE FOR REGRESSION
+akker_data <- df_joined
+save(akker_data, file="akker_abs.RData")
+
+
 df_sumed = df_joined %>%
   group_by(Treatment) %>%
   summarise(sum_abs = sum(abs))
