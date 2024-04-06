@@ -111,6 +111,7 @@ pd_DESeq_3_1 <- prune_taxa(sigASVs_vec_3_1,pd_phyloseq)
 sigASVs_3_1 <- tax_table(pd_DESeq_3_1) %>% as.data.frame() %>%
   rownames_to_column(var="ASV") %>%
   right_join(sigASVs_3_1) %>%
+  mutate(Genus = gsub("^g__", "", Genus)) %>%
   arrange(log2FoldChange) %>%
   mutate(Genus = make.unique(Genus)) %>%
   mutate(Genus = factor(Genus, levels=unique(Genus)))
@@ -119,12 +120,6 @@ sigASVs_3_1 <- sigASVs_3_1 %>%
 view(sigASVs_3_1)
 
 #3_1
-#bar_3_1 <- ggplot(sigASVs_3_1) +
-#  geom_bar(aes(x=Genus, y=log2FoldChange, fill = ifelse(log2FoldChange < 0, "blue", "red")), stat = "identity")+
-#  geom_errorbar(aes(x=Genus, ymin=log2FoldChange-lfcSE, ymax=log2FoldChange+lfcSE)) +
-#  theme(axis.text.x = element_text(angle=90, hjust=1, vjust=0.5)) + ggtitle("Group 3 vs 1") +
-#  theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) + theme(legend.position = "none")
-
 bar_3_1 <- ggplot(sigASVs_3_1) +
   geom_bar(aes(x=log2FoldChange, y=Genus, fill = factor(log2FoldChange < 0)), stat = "identity") +
   geom_errorbar(aes(xmin=log2FoldChange-lfcSE, xmax=log2FoldChange+lfcSE, y=Genus)) +
@@ -132,7 +127,12 @@ bar_3_1 <- ggplot(sigASVs_3_1) +
   theme(axis.text.x = element_text(angle=0, hjust=1, vjust=0.5)) +
   ggtitle("Entacapone vs Non-PD") +
   theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) +
-  theme(legend.position = "none")
+  theme(legend.position = "none") +
+  theme(axis.text.y = element_text(color = "black", face = "bold", size = 12)) +
+  theme(axis.title = element_text(face = "bold", size = 18)) +
+  theme(axis.text.x = element_text(size = 15))
+
+  
 
 #4_1
 sigASVs_4_1 <- res_4_1 %>%
@@ -146,6 +146,7 @@ pd_DESeq_4_1 <- prune_taxa(sigASVs_vec_4_1,pd_phyloseq)
 sigASVs_4_1 <- tax_table(pd_DESeq_4_1) %>% as.data.frame() %>%
   rownames_to_column(var="ASV") %>%
   right_join(sigASVs_4_1) %>%
+  mutate(Genus = gsub("^g__", "", Genus)) %>%
   arrange(log2FoldChange) %>%
   mutate(Genus = make.unique(Genus)) %>%
   mutate(Genus = factor(Genus, levels=unique(Genus)))
@@ -158,7 +159,10 @@ bar_4_1 <- ggplot(sigASVs_4_1) +
   theme(axis.text.x = element_text(angle=0, hjust=1, vjust=0.5)) +
   ggtitle("Pramipexole vs Non-PD") +
   theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) +
-  theme(legend.position = "none")
+  theme(legend.position = "none") +
+  theme(axis.text.y = element_text(color = "black", face = "bold", size = 12)) +
+  theme(axis.title = element_text(face = "bold", size = 18)) +
+  theme(axis.text.x = element_text(size = 15))
 
 #5_1
 sigASVs_5_1 <- res_5_1 %>%
@@ -172,6 +176,7 @@ pd_DESeq_5_1 <- prune_taxa(sigASVs_vec_5_1,pd_phyloseq)
 sigASVs_5_1 <- tax_table(pd_DESeq_5_1) %>% as.data.frame() %>%
   rownames_to_column(var="ASV") %>%
   right_join(sigASVs_5_1) %>%
+  mutate(Genus = gsub("^g__", "", Genus)) %>%
   arrange(log2FoldChange) %>%
   mutate(Genus = make.unique(Genus)) %>%
   mutate(Genus = factor(Genus, levels=unique(Genus)))
@@ -184,7 +189,10 @@ bar_5_1 <- ggplot(sigASVs_5_1) +
   theme(axis.text.x = element_text(angle=0, hjust=1, vjust=0.5)) +
   ggtitle("Rasagiline vs Non-PD") +
   theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) +
-  theme(legend.position = "none")
+  theme(legend.position = "none") +
+  theme(axis.text.y = element_text(color = "black", face = "bold", size = 12)) +
+  theme(axis.title = element_text(face = "bold", size = 18)) +
+  theme(axis.text.x = element_text(size = 15))
 
 #6_1
 sigASVs_6_1 <- res_6_1 %>%
@@ -198,6 +206,7 @@ pd_DESeq_6_1 <- prune_taxa(sigASVs_vec_6_1,pd_phyloseq)
 sigASVs_6_1 <- tax_table(pd_DESeq_6_1) %>% as.data.frame() %>%
   rownames_to_column(var="ASV") %>%
   right_join(sigASVs_6_1) %>%
+  mutate(Genus = gsub("^g__", "", Genus)) %>%
   arrange(log2FoldChange) %>%
   mutate(Genus = make.unique(Genus)) %>%
   mutate(Genus = factor(Genus, levels=unique(Genus)))
@@ -210,7 +219,10 @@ bar_6_1 <- ggplot(sigASVs_6_1) +
   theme(axis.text.x = element_text(angle=0, hjust=1, vjust=0.5)) +
   ggtitle("Amantadine vs Non-PD") +
   theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) +
-  theme(legend.position = "none")
+  theme(legend.position = "none") +
+  theme(axis.text.y = element_text(color = "black", face = "bold", size = 12)) +
+  theme(axis.title = element_text(face = "bold", size = 18)) +
+  theme(axis.text.x = element_text(size = 15))
 
 #3_2
 sigASVs_3_2 <- res_3_2 %>%
@@ -224,6 +236,7 @@ pd_DESeq_3_2 <- prune_taxa(sigASVs_vec_3_2,pd_phyloseq)
 sigASVs_3_2 <- tax_table(pd_DESeq_3_2) %>% as.data.frame() %>%
   rownames_to_column(var="ASV") %>%
   right_join(sigASVs_3_2) %>%
+  mutate(Genus = gsub("^g__", "", Genus)) %>%
   arrange(log2FoldChange) %>%
   mutate(Genus = make.unique(Genus)) %>%
   mutate(Genus = factor(Genus, levels=unique(Genus)))
@@ -236,7 +249,10 @@ bar_3_2 <- ggplot(sigASVs_3_2) +
   theme(axis.text.x = element_text(angle=0, hjust=1, vjust=0.5)) +
   ggtitle("Entacapone vs PD-untreated") +
   theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) +
-  theme(legend.position = "none")
+  theme(legend.position = "none") +
+  theme(axis.text.y = element_text(color = "black", face = "bold", size = 12)) +
+  theme(axis.title = element_text(face = "bold", size = 18)) +
+  theme(axis.text.x = element_text(size = 15))
 
 #4_2
 sigASVs_4_2 <- res_4_2 %>%
@@ -250,6 +266,7 @@ pd_DESeq_4_2 <- prune_taxa(sigASVs_vec_4_2,pd_phyloseq)
 sigASVs_4_2 <- tax_table(pd_DESeq_4_2) %>% as.data.frame() %>%
   rownames_to_column(var="ASV") %>%
   right_join(sigASVs_4_2) %>%
+  mutate(Genus = gsub("^g__", "", Genus)) %>%
   arrange(log2FoldChange) %>%
   mutate(Genus = make.unique(Genus)) %>%
   mutate(Genus = factor(Genus, levels=unique(Genus)))
@@ -262,7 +279,10 @@ bar_4_2 <- ggplot(sigASVs_4_2) +
   theme(axis.text.x = element_text(angle=0, hjust=1, vjust=0.5)) +
   ggtitle("Pramipexole vs PD-untreated") +
   theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) +
-  theme(legend.position = "none")
+  theme(legend.position = "none") +
+  theme(axis.text.y = element_text(color = "black", face = "bold", size = 12)) +
+  theme(axis.title = element_text(face = "bold", size = 18)) +
+  theme(axis.text.x = element_text(size = 15))
 
 #5_2
 sigASVs_5_2 <- res_5_2 %>%
@@ -276,6 +296,7 @@ pd_DESeq_5_2 <- prune_taxa(sigASVs_vec_5_2,pd_phyloseq)
 sigASVs_5_2 <- tax_table(pd_DESeq_5_2) %>% as.data.frame() %>%
   rownames_to_column(var="ASV") %>%
   right_join(sigASVs_5_2) %>%
+  mutate(Genus = gsub("^g__", "", Genus)) %>%
   arrange(log2FoldChange) %>%
   mutate(Genus = make.unique(Genus)) %>%
   mutate(Genus = factor(Genus, levels=unique(Genus)))
@@ -288,7 +309,10 @@ bar_5_2 <- ggplot(sigASVs_5_2) +
   theme(axis.text.x = element_text(angle=0, hjust=1, vjust=0.5)) +
   ggtitle("Rasagiline vs PD-untreated") +
   theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) +
-  theme(legend.position = "none")
+  theme(legend.position = "none") +
+  theme(axis.text.y = element_text(color = "black", face = "bold", size = 12)) +
+  theme(axis.title = element_text(face = "bold", size = 18)) +
+  theme(axis.text.x = element_text(size = 15))
 
 #6_2
 sigASVs_6_2 <- res_6_2 %>%
@@ -302,6 +326,7 @@ pd_DESeq_6_2 <- prune_taxa(sigASVs_vec_6_2,pd_phyloseq)
 sigASVs_6_2 <- tax_table(pd_DESeq_6_2) %>% as.data.frame() %>%
   rownames_to_column(var="ASV") %>%
   right_join(sigASVs_6_2) %>%
+  mutate(Genus = gsub("^g__", "", Genus)) %>%
   arrange(log2FoldChange) %>%
   mutate(Genus = make.unique(Genus)) %>%
   mutate(Genus = factor(Genus, levels=unique(Genus)))
@@ -314,7 +339,10 @@ bar_6_2 <- ggplot(sigASVs_6_2) +
   theme(axis.text.x = element_text(angle=0, hjust=1, vjust=0.5)) +
   ggtitle("Amantadine vs PD-untreated") +
   theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) +
-  theme(legend.position = "none")
+  theme(legend.position = "none") +
+  theme(axis.text.y = element_text(color = "black", face = "bold", size = 12)) +
+  theme(axis.title = element_text(face = "bold", size = 18)) +
+  theme(axis.text.x = element_text(size = 15))
 
 
 bar_3_1
@@ -336,7 +364,7 @@ ggsave(filename="bar_6_1.png",bar_6_1, width = 7, height = 10)
 ggsave(filename="bar_3_2.png",bar_3_2, width = 7, height = 10)
 ggsave(filename="bar_4_2.png",bar_4_2, width = 7, height = 10)
 ggsave(filename="bar_5_2.png",bar_5_2, width = 7, height = 10)
-ggsave(filename="bar_6_2.png",bar_6_2, width = 7, height = 10)
+ggsave(filename="bar_6_2.png",bar_6_2, width = 8, height = 10)
 
 ggsave(filename="vol_3_1.png",vol_3_1)
 ggsave(filename="vol_4_1.png",vol_4_1)
