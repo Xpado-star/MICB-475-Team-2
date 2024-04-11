@@ -85,7 +85,7 @@ treatments = list(control = control_ASVs,
                   prami = prami_ASVs,
                   rasag = rasag_ASVs,
                   amant = amant_ASVs,
-                  combo = combo_ASVs)
+                  combo = combo_ASVs)e
 
 
 #calling the ggvenn function and specifiying which groups to plot
@@ -93,7 +93,9 @@ treatments = list(control = control_ASVs,
 #of control and untreated PD.
 
 #example plotting code for the first two drugs
-ggvenn(treatments, c("control", "pd", "entac"), fill_color = c("blue","green","red"))
-ggvenn(treatments, c("control", "pd", "prami"), fill_color = c("blue","green","yellow"))
+ggvenn(treatments, c("control", "pd", "entac"), fill_color = c("sienna1","indianred2","#9ACD32"))
+ggvenn(treatments, c("control", "pd", "prami"), fill_color = c("sienna1","indianred2","#569866"))
+ggvenn(treatments, c("control", "pd", "rasag"), fill_color = c("sienna1","indianred2","#104E8B"))
+ggvenn(treatments, c("control", "pd", "amant"), fill_color = c("sienna1","indianred2","steelblue2"))
 
 

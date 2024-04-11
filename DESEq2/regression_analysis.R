@@ -82,6 +82,14 @@ summary(bifidobac_regression)
 plot(residuals(bifidobac_regression) ~ log_abs, data = bifidobac_data)
 abline(h=0)
 
+plot(predict(bifidobac_regression), bifidobac_data$updrstotal, 
+     xlab = "Predicted Values", 
+     ylab = "Observed Values") 
+
+bif_glm <- glm(updrstotal ~ log_abs, family = gaussian(link = "identity"), data = bifidobac_data)
+summary(bif_glm)
+
+
                               #### PREVOTELLA REGRESSION ####
 
 #load metadata file
@@ -166,8 +174,6 @@ lachnos_plot
 #view plots based on treatment type
 lachnos_plot + facet_wrap(~Treatment, scales = "free_y")
 
-
-
 #### AKKERMANSIA REGRESSION ###
 
 #load metadata file
@@ -209,3 +215,151 @@ akker_plot
 #view plots based on treatment type
 akker_plot + facet_wrap(~Treatment, scales = "free_y")
 
+
+
+### Faecalibacterium regression ###
+
+taxa = c("g__Faecalibacterium")
+taxa_level = "Genus"
+#Subset the phylsoeq to the taxa of interest
+sub_beta_RA <- subset_taxa(pd_phyloseq, Genus == taxa)
+#Collapse the ASVs of similar taxa rank (EX. Make all species of the same genus into one row)
+sub_beta_order_RA <-tax_glom(sub_beta_RA, taxrank = taxa_level, NArm = FALSE)
+
+
+#Pull out the ASV matrix (relative abundance transformed) 
+ASV_df  =  data.frame(t(otu_table(sub_beta_order_RA)))
+colnames(ASV_df) = "abs"
+#make a new column of the patient ID
+ASV_df$ID = rownames(ASV_df)
+
+#pull out the metadata 
+meta = data.frame(sample_data(sub_beta_order_RA))
+#make a new column with patient ID
+meta$ID = rownames(meta)
+
+#Merge the ASV_df and metadata by the patient ID
+df_joined = inner_join(meta, ASV_df , by = "ID")
+
+#Making a vector with how many individuals per group for normalization later
+individuals_per_treatment = c(nrow(filter(df_joined,df_joined$treatment == 1)),
+                              nrow(filter(df_joined,df_joined$treatment == 2)),
+                              nrow(filter(df_joined,df_joined$treatment == 3)),
+                              nrow(filter(df_joined,df_joined$treatment == 4)),
+                              nrow(filter(df_joined,df_joined$treatment == 5)),
+                              nrow(filter(df_joined,df_joined$treatment == 6)))
+#change the treatments to meaningful information
+df_joined$treatment = dplyr::recode(df_joined$treatment,
+                                    "1" = "Non-PD",
+                                    "2" = "PD-untreated",
+                                    "3" = "Entacapone",
+                                    "4" = "Pramipexole",
+                                    "5" = "Rasagiline",
+                                    "6" = "Amantadine")
+df_joined <- df_joined <- df_joined %>%
+  filter(treatment != 7) %>%
+  rename(Treatment = treatment)
+
+faecalibac_data <- df_joined
+
+#remove NA values from UPDRS score
+faecalibac_data <- faecalibac_data[!is.na(faecalibac_data$updrstotal),]
+
+# create a new column of log(abundance + 1)
+faecalibac_data$log_abs <- log(faecalibac_data$abs + 1)
+
+# plot graph
+faecalibac_plot <- ggplot(faecalibac_data, aes(x=faecalibac_data$abs, 
+                                     y=faecalibac_data$updrstotal,
+                                     color = Treatment)) +
+  geom_point() +
+  theme_clean() +
+  xlab("Log Faecalibacterium abundance") +
+  ylab("UPDRS score") + 
+  geom_smooth(aes(group = 1), method = "lm", color = "black", fill = "lightgrey") +
+  scale_color_manual(values = colors) + 
+  theme(axis.title = element_text(face = "bold"),
+        strip.text = element_text(face = "bold")) +
+  stat_cor(aes(group = 1), label.x = 0, label.y = 115) +
+  stat_regline_equation(aes(group = 1), label.x = 0, label.y = 120)
+
+#view plot
+faecalibac_plot
+
+#view plots based on treatment type
+faecalibac_plot + facet_wrap(~Treatment, scales = "free_y")
+
+
+
+### Bacteroides regression ###
+
+taxa = c("g__Bacteroides")
+taxa_level = "Genus"
+#Subset the phylsoeq to the taxa of interest
+sub_beta_RA <- subset_taxa(pd_phyloseq, Genus == taxa)
+#Collapse the ASVs of similar taxa rank (EX. Make all species of the same genus into one row)
+sub_beta_order_RA <-tax_glom(sub_beta_RA, taxrank = taxa_level, NArm = FALSE)
+
+
+#Pull out the ASV matrix (relative abundance transformed) 
+ASV_df  =  data.frame(t(otu_table(sub_beta_order_RA)))
+colnames(ASV_df) = "abs"
+#make a new column of the patient ID
+ASV_df$ID = rownames(ASV_df)
+
+#pull out the metadata 
+meta = data.frame(sample_data(sub_beta_order_RA))
+#make a new column with patient ID
+meta$ID = rownames(meta)
+
+#Merge the ASV_df and metadata by the patient ID
+df_joined = inner_join(meta, ASV_df , by = "ID")
+
+#Making a vector with how many individuals per group for normalization later
+individuals_per_treatment = c(nrow(filter(df_joined,df_joined$treatment == 1)),
+                              nrow(filter(df_joined,df_joined$treatment == 2)),
+                              nrow(filter(df_joined,df_joined$treatment == 3)),
+                              nrow(filter(df_joined,df_joined$treatment == 4)),
+                              nrow(filter(df_joined,df_joined$treatment == 5)),
+                              nrow(filter(df_joined,df_joined$treatment == 6)))
+#change the treatments to meaningful information
+df_joined$treatment = dplyr::recode(df_joined$treatment,
+                                    "1" = "Non-PD",
+                                    "2" = "PD-untreated",
+                                    "3" = "Entacapone",
+                                    "4" = "Pramipexole",
+                                    "5" = "Rasagiline",
+                                    "6" = "Amantadine")
+df_joined <- df_joined <- df_joined %>%
+  filter(treatment != 7) %>%
+  rename(Treatment = treatment)
+
+bacter_data <- df_joined
+
+#remove NA values from UPDRS score
+bacter_data <- bacter_data[!is.na(bacter_data$updrstotal),]
+
+# create a new column of log(abundance + 1)
+bacter_data$log_abs <- log(bacter_data$abs + 1)
+
+
+#re-plot graph
+bacter_plot <- ggplot(bacter_data, aes(x=bacter_data$abs, 
+                                               y=bacter_data$updrstotal,
+                                               color = Treatment)) +
+  geom_point() +
+  theme_clean() +
+  xlab("Log Faecalibacterium abundance") +
+  ylab("UPDRS score") + 
+  geom_smooth(aes(group = 1), method = "lm", color = "black", fill = "lightgrey") +
+  scale_color_manual(values = colors) + 
+  theme(axis.title = element_text(face = "bold"),
+        strip.text = element_text(face = "bold")) +
+  stat_cor(aes(group = 1), label.x = 0, label.y = 115) +
+  stat_regline_equation(aes(group = 1), label.x = 0, label.y = 120)
+
+#view plot
+bacter_plot
+
+#view plots based on treatment type
+bacter_plot + facet_wrap(~Treatment, scales = "free_y")
