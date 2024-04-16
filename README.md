@@ -108,27 +108,3 @@ John - Uploaded new pd_metadata_treatment.tsv to server. Compiled table, taxa ba
 
 John - Using table-no-mitochondria-no-chloroplast_treatment.qzv, we found a maximum sampling depth of 5421 in order to retain at least 6 samples in all treatment categories. Alpha-rarefaction curve displayed that 5421 falls under the plateau.
 
-## March 16, 2024
-Cayden - Made DESEq2 folder. Performed differential abundance analysis using DESeq2. Adapted code from canvas modules to make bar plots and volcano plots.
-
-
-## March 17, 2024
-Cayden - Exported DESeq results as csv files, then organized them into an excel spreadsheet. Wrote/tested code for adding genus labels to volcano plots.
-
-## March 18, 2024
-Cayden - Updated aesthetics of DESeq differential abundance bar plots.
-
-## March 21, 2024
-Cayden - Wrote code to sum the raw abundance values of a specific genus in each treatment group. Made bar plots, but did not match results from differential abundance analysis, as each treatment group had a different number of samples. Larger groups would naturally have higher sums for each genus. Troubleshooting was deferred to a future date.
-
-## March 22, 2024
-Cayden - Updated genus abundance plots to show abundance sums normalized to the number of sample IDs in each treatment group, aka mean abundance.
-
-## March 23, 2024
-Cayden - Made minor aesthetic changes to plots.
-
-## March 31, 2024
-Cayden - Made minor aesthetic changes to plots.
-
-## April 11, 2024
-Cayden - Updated titles of volcano plots to include dopaminergic therapeutic names instead of group numbers.
