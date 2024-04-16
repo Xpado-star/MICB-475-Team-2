@@ -38,7 +38,7 @@ individuals_per_treatment = c(nrow(filter(df_joined,df_joined$treatment == 1)),
                               nrow(filter(df_joined,df_joined$treatment == 6)))
 #change the treatments to meaningful information
 df_joined$treatment = dplyr::recode(df_joined$treatment,
-                                    "1" = "Non-PD",
+                                    "1" = "Healthy",
                                     "2" = "PD-untreated",
                                     "3" = "Entacapone",
                                     "4" = "Pramipexole",
@@ -62,7 +62,7 @@ df_sumed$rel_abs = df_sumed$sum_abs/individuals_per_treatment
 #generating the plot
 Bifidobacterium_bar <- ggplot(df_sumed, aes(Treatment, rel_abs, fill = Treatment)) +
   geom_col(color = "black") + # Plotting bars
-  scale_fill_manual(values = c("Non-PD" = "sienna1", "PD-untreated" = "indianred2", 
+  scale_fill_manual(values = c("Healthy" = "sienna1", "PD-untreated" = "indianred2", 
                                "Entacapone" = "#9ACD32", "Pramipexole" = "#569866", 
                                "Rasagiline" = "#104E8B", "Amantadine" = "steelblue2")) + # Setting custom colors
   scale_y_continuous(expand = expansion(mult = c(0, 0.05))) + # Adjusting expansion of y-axis
@@ -115,7 +115,7 @@ individuals_per_treatment = c(nrow(filter(df_joined,df_joined$treatment == 1)),
                               nrow(filter(df_joined,df_joined$treatment == 6)))
 #change the treatments to meaningful information
 df_joined$treatment = dplyr::recode(df_joined$treatment,
-                                    "1" = "Non-PD",
+                                    "1" = "Healthy",
                                     "2" = "PD-untreated",
                                     "3" = "Entacapone",
                                     "4" = "Pramipexole",
@@ -139,7 +139,7 @@ df_sumed$rel_abs = df_sumed$sum_abs/individuals_per_treatment
 #generating the plot
 Prevotella_bar <- ggplot(df_sumed, aes(Treatment, rel_abs, fill = Treatment)) +
   geom_col(color = "black") + # Plotting bars
-  scale_fill_manual(values = c("Non-PD" = "sienna1", "PD-untreated" = "indianred2", 
+  scale_fill_manual(values = c("Healthy" = "sienna1", "PD-untreated" = "indianred2", 
                                "Entacapone" = "#9ACD32", "Pramipexole" = "#569866", 
                                "Rasagiline" = "#104E8B", "Amantadine" = "steelblue2")) + # Setting custom colors
   scale_y_continuous(expand = expansion(mult = c(0, 0.05))) + # Adjusting expansion of y-axis
@@ -175,7 +175,7 @@ individuals_per_treatment = c(nrow(filter(df_joined,df_joined$treatment == 1)),
                               nrow(filter(df_joined,df_joined$treatment == 5)),
                               nrow(filter(df_joined,df_joined$treatment == 6)))
 df_joined$treatment = dplyr::recode(df_joined$treatment,
-                                    "1" = "Non-PD",
+                                    "1" = "Healthy",
                                     "2" = "PD-untreated",
                                     "3" = "Entacapone",
                                     "4" = "Pramipexole",
@@ -196,7 +196,7 @@ df_sumed = df_joined %>%
 df_sumed$rel_abs = df_sumed$sum_abs/individuals_per_treatment
 Lachnospiraceae_bar <- ggplot(df_sumed, aes(Treatment, rel_abs, fill = Treatment)) +
   geom_col(color = "black") + # Plotting bars
-  scale_fill_manual(values = c("Non-PD" = "sienna1", "PD-untreated" = "indianred2", 
+  scale_fill_manual(values = c("Healthy" = "sienna1", "PD-untreated" = "indianred2", 
                                "Entacapone" = "#9ACD32", "Pramipexole" = "#569866", 
                                "Rasagiline" = "#104E8B", "Amantadine" = "steelblue2")) + # Setting custom colors
   scale_y_continuous(expand = expansion(mult = c(0, 0.05))) + # Adjusting expansion of y-axis
@@ -233,7 +233,7 @@ individuals_per_treatment = c(nrow(filter(df_joined,df_joined$treatment == 1)),
                               nrow(filter(df_joined,df_joined$treatment == 5)),
                               nrow(filter(df_joined,df_joined$treatment == 6)))
 df_joined$treatment = dplyr::recode(df_joined$treatment,
-                                    "1" = "Non-PD",
+                                    "1" = "Healthy",
                                     "2" = "PD-untreated",
                                     "3" = "Entacapone",
                                     "4" = "Pramipexole",
@@ -254,7 +254,7 @@ df_sumed = df_joined %>%
 df_sumed$rel_abs = df_sumed$sum_abs/individuals_per_treatment
 Akkermansia_bar <- ggplot(df_sumed, aes(Treatment, rel_abs, fill = Treatment)) +
   geom_col(color = "black") + # Plotting bars
-  scale_fill_manual(values = c("Non-PD" = "sienna1", "PD-untreated" = "indianred2", 
+  scale_fill_manual(values = c("Healthy" = "sienna1", "PD-untreated" = "indianred2", 
                                "Entacapone" = "#9ACD32", "Pramipexole" = "#569866", 
                                "Rasagiline" = "#104E8B", "Amantadine" = "steelblue2")) + # Setting custom colors
   scale_y_continuous(expand = expansion(mult = c(0, 0.05))) + # Adjusting expansion of y-axis
