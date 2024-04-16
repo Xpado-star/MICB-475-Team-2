@@ -30,7 +30,7 @@ vol_3_1 <- res_3_1 %>%
   mutate(significant = padj<0.01 & abs(log2FoldChange)>2) %>%
   ggplot() + 
   geom_point(aes(x=log2FoldChange, y=-log10(padj), col=significant)) + 
-  ggtitle("Group 3 vs 1") +
+  ggtitle("Entacapone vs Healthy") +
   theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) + 
   theme(legend.position = "none")
 
@@ -38,7 +38,7 @@ vol_4_1 <- res_4_1 %>%
   mutate(significant = padj<0.01 & abs(log2FoldChange)>2) %>%
   ggplot() + 
   geom_point(aes(x=log2FoldChange, y=-log10(padj), col=significant)) + 
-  ggtitle("Group 4 vs 1") +
+  ggtitle("Pramipexole vs Healthy") +
   theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) + 
   theme(legend.position = "none")
 
@@ -46,7 +46,7 @@ vol_5_1 <- res_5_1 %>%
   mutate(significant = padj<0.01 & abs(log2FoldChange)>2) %>%
   ggplot() + 
   geom_point(aes(x=log2FoldChange, y=-log10(padj), col=significant)) + 
-  ggtitle("Group 5 vs 1") +
+  ggtitle("Rasagiline vs Healthy") +
   theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) + 
   theme(legend.position = "none")
 
@@ -54,7 +54,7 @@ vol_6_1 <- res_6_1 %>%
   mutate(significant = padj<0.01 & abs(log2FoldChange)>2) %>%
   ggplot() + 
   geom_point(aes(x=log2FoldChange, y=-log10(padj), col=significant)) + 
-  ggtitle("Group 6 vs 1") +
+  ggtitle("Amantadine vs Healthy") +
   theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) + 
   theme(legend.position = "none")
 
@@ -63,7 +63,7 @@ vol_3_2 <- res_3_2 %>%
   mutate(significant = padj<0.01 & abs(log2FoldChange)>2) %>%
   ggplot() + 
   geom_point(aes(x=log2FoldChange, y=-log10(padj), col=significant)) + 
-  ggtitle("Group 3 vs 2") +
+  ggtitle("Entacapone vs PD-untreated") +
   theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) + 
   theme(legend.position = "none")
 
@@ -71,7 +71,7 @@ vol_4_2 <- res_4_2 %>%
   mutate(significant = padj<0.01 & abs(log2FoldChange)>2) %>%
   ggplot() + 
   geom_point(aes(x=log2FoldChange, y=-log10(padj), col=significant)) + 
-  ggtitle("Group 4 vs 2") +
+  ggtitle("Pramipexole vs PD-untreated") +
   theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) + 
   theme(legend.position = "none")
 
@@ -79,7 +79,7 @@ vol_5_2 <- res_5_2 %>%
   mutate(significant = padj<0.01 & abs(log2FoldChange)>2) %>%
   ggplot() + 
   geom_point(aes(x=log2FoldChange, y=-log10(padj), col=significant)) + 
-  ggtitle("Group 5 vs 2") +
+  ggtitle("Rasagiline vs PD-untreated") +
   theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) + 
   theme(legend.position = "none")
 
@@ -87,7 +87,7 @@ vol_6_2 <- res_6_2 %>%
   mutate(significant = padj<0.01 & abs(log2FoldChange)>2) %>%
   ggplot() + 
   geom_point(aes(x=log2FoldChange, y=-log10(padj), col=significant)) + 
-  ggtitle("Group 6 vs 2") +
+  ggtitle("Amantadine vs PD-untreated") +
   theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) + 
   theme(legend.position = "none")
 
@@ -365,14 +365,14 @@ wrap_plots(bar_3_1, bar_4_1, bar_5_1, bar_6_1, bar_3_2, bar_4_2, bar_5_2, bar_6_
 
 
 
-ggsave(filename="bar_3_1.png",bar_3_1, width = 7, height = 10)
-ggsave(filename="bar_4_1.png",bar_4_1, width = 7, height = 10)
-ggsave(filename="bar_5_1.png",bar_5_1, width = 7, height = 10)
-ggsave(filename="bar_6_1.png",bar_6_1, width = 7, height = 10)
-ggsave(filename="bar_3_2.png",bar_3_2, width = 7, height = 10)
-ggsave(filename="bar_4_2.png",bar_4_2, width = 7, height = 10)
-ggsave(filename="bar_5_2.png",bar_5_2, width = 7, height = 10)
-ggsave(filename="bar_6_2.png",bar_6_2, width = 8, height = 10)
+#ggsave(filename="bar_3_1.png",bar_3_1, width = 7, height = 10)
+#ggsave(filename="bar_4_1.png",bar_4_1, width = 7, height = 10)
+#ggsave(filename="bar_5_1.png",bar_5_1, width = 7, height = 10)
+#ggsave(filename="bar_6_1.png",bar_6_1, width = 7, height = 10)
+#ggsave(filename="bar_3_2.png",bar_3_2, width = 7, height = 10)
+#ggsave(filename="bar_4_2.png",bar_4_2, width = 7, height = 10)
+#ggsave(filename="bar_5_2.png",bar_5_2, width = 7, height = 10)
+#ggsave(filename="bar_6_2.png",bar_6_2, width = 8, height = 10)
 
 ggsave(filename="vol_3_1.png",vol_3_1)
 ggsave(filename="vol_4_1.png",vol_4_1)
