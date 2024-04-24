@@ -30,7 +30,7 @@ vol_3_1 <- res_3_1 %>%
   mutate(significant = padj<0.01 & abs(log2FoldChange)>2) %>%
   ggplot() + 
   geom_point(aes(x=log2FoldChange, y=-log10(padj), col=significant)) + 
-  ggtitle("Group 3 vs 1") +
+  ggtitle("Entacapone vs Healthy") +
   theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) + 
   theme(legend.position = "none")
 
@@ -38,7 +38,7 @@ vol_4_1 <- res_4_1 %>%
   mutate(significant = padj<0.01 & abs(log2FoldChange)>2) %>%
   ggplot() + 
   geom_point(aes(x=log2FoldChange, y=-log10(padj), col=significant)) + 
-  ggtitle("Group 4 vs 1") +
+  ggtitle("Pramipexole vs Healthy") +
   theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) + 
   theme(legend.position = "none")
 
@@ -46,7 +46,7 @@ vol_5_1 <- res_5_1 %>%
   mutate(significant = padj<0.01 & abs(log2FoldChange)>2) %>%
   ggplot() + 
   geom_point(aes(x=log2FoldChange, y=-log10(padj), col=significant)) + 
-  ggtitle("Group 5 vs 1") +
+  ggtitle("Rasagiline vs Healthy") +
   theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) + 
   theme(legend.position = "none")
 
@@ -54,7 +54,7 @@ vol_6_1 <- res_6_1 %>%
   mutate(significant = padj<0.01 & abs(log2FoldChange)>2) %>%
   ggplot() + 
   geom_point(aes(x=log2FoldChange, y=-log10(padj), col=significant)) + 
-  ggtitle("Group 6 vs 1") +
+  ggtitle("Amantadine vs Healthy") +
   theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) + 
   theme(legend.position = "none")
 
@@ -63,7 +63,7 @@ vol_3_2 <- res_3_2 %>%
   mutate(significant = padj<0.01 & abs(log2FoldChange)>2) %>%
   ggplot() + 
   geom_point(aes(x=log2FoldChange, y=-log10(padj), col=significant)) + 
-  ggtitle("Group 3 vs 2") +
+  ggtitle("Entacapone vs PD-untreated") +
   theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) + 
   theme(legend.position = "none")
 
@@ -71,7 +71,7 @@ vol_4_2 <- res_4_2 %>%
   mutate(significant = padj<0.01 & abs(log2FoldChange)>2) %>%
   ggplot() + 
   geom_point(aes(x=log2FoldChange, y=-log10(padj), col=significant)) + 
-  ggtitle("Group 4 vs 2") +
+  ggtitle("Pramipexole vs PD-untreated") +
   theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) + 
   theme(legend.position = "none")
 
@@ -79,7 +79,7 @@ vol_5_2 <- res_5_2 %>%
   mutate(significant = padj<0.01 & abs(log2FoldChange)>2) %>%
   ggplot() + 
   geom_point(aes(x=log2FoldChange, y=-log10(padj), col=significant)) + 
-  ggtitle("Group 5 vs 2") +
+  ggtitle("Rasagiline vs PD-untreated") +
   theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) + 
   theme(legend.position = "none")
 
@@ -87,7 +87,7 @@ vol_6_2 <- res_6_2 %>%
   mutate(significant = padj<0.01 & abs(log2FoldChange)>2) %>%
   ggplot() + 
   geom_point(aes(x=log2FoldChange, y=-log10(padj), col=significant)) + 
-  ggtitle("Group 6 vs 2") +
+  ggtitle("Amantadine vs PD-untreated") +
   theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) + 
   theme(legend.position = "none")
 
@@ -124,8 +124,9 @@ bar_3_1 <- ggplot(sigASVs_3_1) +
   geom_bar(aes(x=log2FoldChange, y=Genus, fill = factor(log2FoldChange < 0)), stat = "identity") +
   geom_errorbar(aes(xmin=log2FoldChange-lfcSE, xmax=log2FoldChange+lfcSE, y=Genus)) +
   scale_fill_manual(values = c("TRUE" = "sienna1", "FALSE" = "#9ACD32")) +
+  theme_bw() +
   theme(axis.text.x = element_text(angle=0, hjust=1, vjust=0.5)) +
-  ggtitle("Entacapone vs Non-PD") +
+  ggtitle("Entacapone vs Healthy") +
   theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) +
   theme(legend.position = "none") +
   theme(axis.text.y = element_text(color = "black", face = "bold", size = 12)) +
@@ -156,8 +157,9 @@ bar_4_1 <- ggplot(sigASVs_4_1) +
   geom_bar(aes(x=log2FoldChange, y=Genus, fill = factor(log2FoldChange < 0)), stat = "identity") +
   geom_errorbar(aes(xmin=log2FoldChange-lfcSE, xmax=log2FoldChange+lfcSE, y=Genus)) +
   scale_fill_manual(values = c("TRUE" = "sienna1", "FALSE" = "#569866")) +
+  theme_bw() +
   theme(axis.text.x = element_text(angle=0, hjust=1, vjust=0.5)) +
-  ggtitle("Pramipexole vs Non-PD") +
+  ggtitle("Pramipexole vs Healthy") +
   theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) +
   theme(legend.position = "none") +
   theme(axis.text.y = element_text(color = "black", face = "bold", size = 12)) +
@@ -186,13 +188,14 @@ bar_5_1 <- ggplot(sigASVs_5_1) +
   geom_bar(aes(x=log2FoldChange, y=Genus, fill = factor(log2FoldChange < 0)), stat = "identity") +
   geom_errorbar(aes(xmin=log2FoldChange-lfcSE, xmax=log2FoldChange+lfcSE, y=Genus)) +
   scale_fill_manual(values = c("TRUE" = "sienna1", "FALSE" = "#104E8B")) +
+  theme_bw() +
   theme(axis.text.x = element_text(angle=0, hjust=1, vjust=0.5)) +
-  ggtitle("Rasagiline vs Non-PD") +
+  ggtitle("Rasagiline vs Healthy") +
   theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) +
   theme(legend.position = "none") +
   theme(axis.text.y = element_text(color = "black", face = "bold", size = 12)) +
   theme(axis.title = element_text(face = "bold", size = 18)) +
-  theme(axis.text.x = element_text(size = 15))
+  theme(axis.text.x = element_text(size = 15)) 
 
 #6_1
 sigASVs_6_1 <- res_6_1 %>%
@@ -216,8 +219,9 @@ bar_6_1 <- ggplot(sigASVs_6_1) +
   geom_bar(aes(x=log2FoldChange, y=Genus, fill = factor(log2FoldChange < 0)), stat = "identity") +
   geom_errorbar(aes(xmin=log2FoldChange-lfcSE, xmax=log2FoldChange+lfcSE, y=Genus)) +
   scale_fill_manual(values = c("TRUE" = "sienna1", "FALSE" = "steelblue2")) +
+  theme_bw() +
   theme(axis.text.x = element_text(angle=0, hjust=1, vjust=0.5)) +
-  ggtitle("Amantadine vs Non-PD") +
+  ggtitle("Amantadine vs Healthy") +
   theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) +
   theme(legend.position = "none") +
   theme(axis.text.y = element_text(color = "black", face = "bold", size = 12)) +
@@ -246,6 +250,7 @@ bar_3_2 <- ggplot(sigASVs_3_2) +
   geom_bar(aes(x=log2FoldChange, y=Genus, fill = factor(log2FoldChange < 0)), stat = "identity") +
   geom_errorbar(aes(xmin=log2FoldChange-lfcSE, xmax=log2FoldChange+lfcSE, y=Genus)) +
   scale_fill_manual(values = c("TRUE" = "indianred2", "FALSE" = "#9ACD32")) +
+  theme_bw() +
   theme(axis.text.x = element_text(angle=0, hjust=1, vjust=0.5)) +
   ggtitle("Entacapone vs PD-untreated") +
   theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) +
@@ -276,6 +281,7 @@ bar_4_2 <- ggplot(sigASVs_4_2) +
   geom_bar(aes(x=log2FoldChange, y=Genus, fill = factor(log2FoldChange < 0)), stat = "identity") +
   geom_errorbar(aes(xmin=log2FoldChange-lfcSE, xmax=log2FoldChange+lfcSE, y=Genus)) +
   scale_fill_manual(values = c("TRUE" = "indianred2", "FALSE" = "#569866")) +
+  theme_bw() +
   theme(axis.text.x = element_text(angle=0, hjust=1, vjust=0.5)) +
   ggtitle("Pramipexole vs PD-untreated") +
   theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) +
@@ -306,6 +312,7 @@ bar_5_2 <- ggplot(sigASVs_5_2) +
   geom_bar(aes(x=log2FoldChange, y=Genus, fill = factor(log2FoldChange < 0)), stat = "identity") +
   geom_errorbar(aes(xmin=log2FoldChange-lfcSE, xmax=log2FoldChange+lfcSE, y=Genus)) +
   scale_fill_manual(values = c("TRUE" = "indianred2", "FALSE" = "#104E8B")) +
+  theme_bw() +
   theme(axis.text.x = element_text(angle=0, hjust=1, vjust=0.5)) +
   ggtitle("Rasagiline vs PD-untreated") +
   theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) +
@@ -336,6 +343,7 @@ bar_6_2 <- ggplot(sigASVs_6_2) +
   geom_bar(aes(x=log2FoldChange, y=Genus, fill = factor(log2FoldChange < 0)), stat = "identity") +
   geom_errorbar(aes(xmin=log2FoldChange-lfcSE, xmax=log2FoldChange+lfcSE, y=Genus)) +
   scale_fill_manual(values = c("TRUE" = "indianred2", "FALSE" = "steelblue2")) +
+  theme_bw() +
   theme(axis.text.x = element_text(angle=0, hjust=1, vjust=0.5)) +
   ggtitle("Amantadine vs PD-untreated") +
   theme(plot.title = element_text(family = "Arial", size = 20, hjust = 0.5, face = "bold")) +
@@ -357,14 +365,14 @@ wrap_plots(bar_3_1, bar_4_1, bar_5_1, bar_6_1, bar_3_2, bar_4_2, bar_5_2, bar_6_
 
 
 
-ggsave(filename="bar_3_1.png",bar_3_1, width = 7, height = 10)
-ggsave(filename="bar_4_1.png",bar_4_1, width = 7, height = 10)
-ggsave(filename="bar_5_1.png",bar_5_1, width = 7, height = 10)
-ggsave(filename="bar_6_1.png",bar_6_1, width = 7, height = 10)
-ggsave(filename="bar_3_2.png",bar_3_2, width = 7, height = 10)
-ggsave(filename="bar_4_2.png",bar_4_2, width = 7, height = 10)
-ggsave(filename="bar_5_2.png",bar_5_2, width = 7, height = 10)
-ggsave(filename="bar_6_2.png",bar_6_2, width = 8, height = 10)
+#ggsave(filename="bar_3_1.png",bar_3_1, width = 7, height = 10)
+#ggsave(filename="bar_4_1.png",bar_4_1, width = 7, height = 10)
+#ggsave(filename="bar_5_1.png",bar_5_1, width = 7, height = 10)
+#ggsave(filename="bar_6_1.png",bar_6_1, width = 7, height = 10)
+#ggsave(filename="bar_3_2.png",bar_3_2, width = 7, height = 10)
+#ggsave(filename="bar_4_2.png",bar_4_2, width = 7, height = 10)
+#ggsave(filename="bar_5_2.png",bar_5_2, width = 7, height = 10)
+#ggsave(filename="bar_6_2.png",bar_6_2, width = 8, height = 10)
 
 ggsave(filename="vol_3_1.png",vol_3_1)
 ggsave(filename="vol_4_1.png",vol_4_1)

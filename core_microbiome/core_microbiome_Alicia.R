@@ -79,13 +79,13 @@ library(ggvenn)
 
 
 #making a list with all the groups
-treatments = list(control = control_ASVs,
-                  pd = untreat_ASVs,
-                  entac = entac_ASVs,
-                  prami = prami_ASVs,
-                  rasag = rasag_ASVs,
-                  amant = amant_ASVs,
-                  combo = combo_ASVs)e
+treatments = list(Healthy = control_ASVs,
+                  PD_untreated = untreat_ASVs,
+                  Entacapone = entac_ASVs,
+                  Pramipexole = prami_ASVs,
+                  Rasagiline = rasag_ASVs,
+                  Amantadine = amant_ASVs,
+                  Combo = combo_ASVs)
 
 
 #calling the ggvenn function and specifiying which groups to plot
@@ -93,9 +93,9 @@ treatments = list(control = control_ASVs,
 #of control and untreated PD.
 
 #example plotting code for the first two drugs
-ggvenn(treatments, c("control", "pd", "entac"), fill_color = c("sienna1","indianred2","#9ACD32"))
-ggvenn(treatments, c("control", "pd", "prami"), fill_color = c("sienna1","indianred2","#569866"))
-ggvenn(treatments, c("control", "pd", "rasag"), fill_color = c("sienna1","indianred2","#104E8B"))
-ggvenn(treatments, c("control", "pd", "amant"), fill_color = c("sienna1","indianred2","steelblue2"))
+ggvenn(treatments, c("Healthy", "PD_untreated", "Entacapone"), fill_color = c("sienna1","indianred2","#9ACD32"))
+ggvenn(treatments, c("Healthy", "PD_untreated", "Pramipexole"), fill_color = c("sienna1","indianred2","#569866"))
+ggvenn(treatments, c("Healthy", "PD_untreated", "Rasagiline"), fill_color = c("sienna1","indianred2","#104E8B"))
+ggvenn(treatments, c("Healthy", "PD_untreated", "Amantadine"), fill_color = c("sienna1","indianred2","steelblue2"))
 
 
