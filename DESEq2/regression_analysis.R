@@ -165,14 +165,16 @@ lachnos_plot <- ggplot(lachnos_data, aes(x=lachnos_data$log_abs,
   scale_color_manual(values = colors) + 
   theme(axis.title = element_text(face = "bold"),
         strip.text = element_text(face = "bold")) +
-  stat_cor(aes(group = 1), label.x = 0, label.y = 115) +
+  stat_cor(aes(group = 1), label.x = 0, label.y = 110) +
   stat_regline_equation(aes(group = 1), label.x = 0, label.y = 120)
 
 #view plot
 lachnos_plot
 
 #view plots based on treatment type
-lachnos_plot + facet_wrap(~Treatment, scales = "free_y")
+lachnos_plot + facet_wrap(~Treatment, scales = "free_y") +
+  theme(strip.text.x = element_text(face = "bold"))
+
 
 #### AKKERMANSIA REGRESSION ###
 
@@ -288,8 +290,6 @@ faecalibac_plot
 
 #view plots based on treatment type
 faecalibac_plot + facet_wrap(~Treatment, scales = "free_y")
-
-
 
 ### Bacteroides regression ###
 
