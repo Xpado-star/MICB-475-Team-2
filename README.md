@@ -6,7 +6,7 @@ Link to dataset source from Cirstea et al. - https://doi.org/10.1002/mds.28052
 # Project Summary
 Parkinson’s Disease (PD) is a neurodegenerative disorder associated with dopaminergic neuron loss, leading to dopamine dysregulation. Dopaminergic therapeutics are often administered to restore dopamine levels and have been associated with changes to the gut microbiota. Through a secondary data analysis of a cross-sectional cohort of PD patients, we aimed to explore the use of four dopaminergic drugs (entacapone, pramipexole, rasagiline, amantadine) and the associated changes in the gut microbiome. Although the use of dopaminergic therapeutics was not associated with compositional alterations to the microbial diversity of PD patients, we observed changes to specific taxa. Amantadine and pramipexole therapeutics were both associated with a core microbiome that contains *Faecalibacterium* – a genus contained in the core microbiome of healthy individuals but absent in untreated PD patients. Furthermore, entacapone and amantadine use was associated with taxa that are indicative of a healthy gut microbiome, including *Lachnospiraceae* and *Colidextribacter*. We also identified three genera that were differentially abundant with dopaminergic drug use. Dopaminergic therapeutic use was generally associated with increased *Bifidobacterium*, decreased *Prevotella*, and increased *Akkermansia*. While increased *Bifidobacterium* is associated with a healthier gut microbiome and *Akkermansia* is associated with gut dysbiosis, the effects of *Prevotella* remain unclear. Our findings suggest that dopaminergic therapeutics are associated with alterations in the gut microbiome of PD patients that provide an overall benefit to the host. Future studies could incorporate higher resolution analysis at the species level, and explore causational effects of dopaminergic drugs in a prospective study.
 
-# Links to Project Aims
+# Project Aims with Links to Annotated Scripts and Outputs
 [**Aim 1A**](https://github.com/Xpado-star/MICB-475-Team-2/tree/main/qiime_files) - QIIME2 processing  
 [**Aim 1B**](https://github.com/Xpado-star/MICB-475-Team-2/tree/main/Metadata) - Metadata wrangling  
 [**Aim 2**](https://github.com/Xpado-star/MICB-475-Team-2/tree/main/alpha_beta_diversity) - Alpha and beta diversity analysis  
@@ -19,7 +19,20 @@ Parkinson’s Disease (PD) is a neurodegenerative disorder associated with dopam
 
 # Meeting Notes
 [Final Consolidated Meeting Notes](https://github.com/Xpado-star/MICB-475-Team-2/blob/main/Meeting_Notes/Final%20consolidated%20meeting%20notes%20%26%20agendas.pdf)  
-[Individual Meeting Notes](https://github.com/Xpado-star/MICB-475-Team-2/tree/main/Meeting_Notes)  
+[Individual Meeting Notes - All](https://github.com/Xpado-star/MICB-475-Team-2/tree/main/Meeting_Notes)  
+## February
+- [February 5](https://github.com/Xpado-star/MICB-475-Team-2/blob/main/Meeting_Notes/Feb%205%20Meeting%20Notes.pdf)
+- [February 12](https://github.com/Xpado-star/MICB-475-Team-2/blob/main/Meeting_Notes/Feb%2012%20Meeting%20Notes.pdf)
+- [February 21](https://github.com/Xpado-star/MICB-475-Team-2/blob/main/Meeting_Notes/Feb%2021%20Meeting%20Notes.pdf)
+- [February 26](https://github.com/Xpado-star/MICB-475-Team-2/blob/main/Meeting_Notes/Feb%2026%20meeting%20notes.pdf)
+## March
+- [March 4](https://github.com/Xpado-star/MICB-475-Team-2/blob/main/Meeting_Notes/Mar%204%20Meeting%20Notes.pdf)
+- [March 11](https://github.com/Xpado-star/MICB-475-Team-2/blob/main/Meeting_Notes/Mar%2011%20Meeting%20Notes.pdf)
+- [March 18](https://github.com/Xpado-star/MICB-475-Team-2/blob/main/Meeting_Notes/March%2018%20Meeting%20Notes.pdf)
+- [March 25](https://github.com/Xpado-star/MICB-475-Team-2/blob/main/Meeting_Notes/Mar%2025%20Meeting%20Notes.pdf)
+## April
+- [April 3](https://github.com/Xpado-star/MICB-475-Team-2/blob/main/Meeting_Notes/April%203%20Meeting%20Notes.pdf)
+- [April 8](https://github.com/Xpado-star/MICB-475-Team-2/blob/main/Meeting_Notes/April%208%20Meeting%20Notes.pdf)
 
 # Lab notebook
 Includes brief summaries of what was completed throughout the project duration.
