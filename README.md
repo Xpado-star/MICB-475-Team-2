@@ -1,5 +1,7 @@
 # MICB 475: Data Science Research in Microbiology - Team 2 - Lab Notebook  
-Team Members - Ali, Alicia, Cayden, David, John
+Team Members - Ali, Alicia, Cayden, David, John  
+
+Link to dataset source from Cirstea et al. - https://doi.org/10.1002/mds.28052
 
 # Project Summary
 Parkinson’s Disease (PD) is a neurodegenerative disorder associated with dopaminergic neuron loss, leading to dopamine dysregulation. Dopaminergic therapeutics are often administered to restore dopamine levels and have been associated with changes to the gut microbiota. Through a secondary data analysis of a cross-sectional cohort of PD patients, we aimed to explore the use of four dopaminergic drugs (entacapone, pramipexole, rasagiline, amantadine) and the associated changes in the gut microbiome. Although the use of dopaminergic therapeutics was not associated with compositional alterations to the microbial diversity of PD patients, we observed changes to specific taxa. Amantadine and pramipexole therapeutics were both associated with a core microbiome that contains *Faecalibacterium* – a genus contained in the core microbiome of healthy individuals but absent in untreated PD patients. Furthermore, entacapone and amantadine use was associated with taxa that are indicative of a healthy gut microbiome, including *Lachnospiraceae* and *Colidextribacter*. We also identified three genera that were differentially abundant with dopaminergic drug use. Dopaminergic therapeutic use was generally associated with increased *Bifidobacterium*, decreased *Prevotella*, and increased *Akkermansia*. While increased *Bifidobacterium* is associated with a healthier gut microbiome and *Akkermansia* is associated with gut dysbiosis, the effects of *Prevotella* remain unclear. Our findings suggest that dopaminergic therapeutics are associated with alterations in the gut microbiome of PD patients that provide an overall benefit to the host. Future studies could incorporate higher resolution analysis at the species level, and explore causational effects of dopaminergic drugs in a prospective study.
@@ -11,6 +13,13 @@ Parkinson’s Disease (PD) is a neurodegenerative disorder associated with dopam
 [**Aim 3**](https://github.com/Xpado-star/MICB-475-Team-2/tree/main/core_microbiome) - Core microbiome analysis  
 [**Aim 4**](https://github.com/Xpado-star/MICB-475-Team-2/tree/main/Indicator%20Taxa) - Indicator species analysis  
 [**Aim 5**](https://github.com/Xpado-star/MICB-475-Team-2/tree/main/DESEq2) - Differential abundance analysis
+
+# Project Timeline
+<img width="970" alt="image" src="https://github.com/Xpado-star/MICB-475-Team-2/assets/158794595/585a1732-3b90-4d0a-81b5-dffb9b7bf307">
+
+# Meeting Notes
+[Final Consolidated Meeting Notes](https://github.com/Xpado-star/MICB-475-Team-2/blob/main/Meeting_Notes/Final%20consolidated%20meeting%20notes%20%26%20agendas.pdf)  
+[Individual Meeting Notes](https://github.com/Xpado-star/MICB-475-Team-2/tree/main/Meeting_Notes)  
 
 # Lab notebook
 Includes brief summaries of what was completed throughout the project duration.
@@ -90,8 +99,6 @@ Ali - Added Meeting agenda, core microbiome analysis
 ## March 3, 2024
 Alicia - Added TSV and code for rough heatmap
 
-## February 26, 2024
-<img width="970" alt="image" src="https://github.com/Xpado-star/MICB-475-Team-2/assets/158794595/585a1732-3b90-4d0a-81b5-dffb9b7bf307">
 
 ## February 12, 2024
 David - Edited the R file, moved into R folder
