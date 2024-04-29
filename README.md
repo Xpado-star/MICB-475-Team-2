@@ -6,13 +6,27 @@ Link to dataset source from Cirstea et al. - https://doi.org/10.1002/mds.28052
 # Project Summary
 Parkinson’s Disease (PD) is a neurodegenerative disorder associated with dopaminergic neuron loss, leading to dopamine dysregulation. Dopaminergic therapeutics are often administered to restore dopamine levels and have been associated with changes to the gut microbiota. Through a secondary data analysis of a cross-sectional cohort of PD patients, we aimed to explore the use of four dopaminergic drugs (entacapone, pramipexole, rasagiline, amantadine) and the associated changes in the gut microbiome. Although the use of dopaminergic therapeutics was not associated with compositional alterations to the microbial diversity of PD patients, we observed changes to specific taxa. Amantadine and pramipexole therapeutics were both associated with a core microbiome that contains *Faecalibacterium* – a genus contained in the core microbiome of healthy individuals but absent in untreated PD patients. Furthermore, entacapone and amantadine use was associated with taxa that are indicative of a healthy gut microbiome, including *Lachnospiraceae* and *Colidextribacter*. We also identified three genera that were differentially abundant with dopaminergic drug use. Dopaminergic therapeutic use was generally associated with increased *Bifidobacterium*, decreased *Prevotella*, and increased *Akkermansia*. While increased *Bifidobacterium* is associated with a healthier gut microbiome and *Akkermansia* is associated with gut dysbiosis, the effects of *Prevotella* remain unclear. Our findings suggest that dopaminergic therapeutics are associated with alterations in the gut microbiome of PD patients that provide an overall benefit to the host. Future studies could incorporate higher resolution analysis at the species level, and explore causational effects of dopaminergic drugs in a prospective study.
 
-# Project Aims with Links to Annotated Scripts and Outputs
+# Project Aims with Links to Annotated Scripts
 [**Aim 1A**](https://github.com/Xpado-star/MICB-475-Team-2/tree/main/qiime_files) - QIIME2 processing  
 [**Aim 1B**](https://github.com/Xpado-star/MICB-475-Team-2/tree/main/Metadata) - Metadata wrangling  
-[**Aim 2**](https://github.com/Xpado-star/MICB-475-Team-2/tree/main/alpha_beta_diversity) - Alpha and beta diversity analysis  
-[**Aim 3**](https://github.com/Xpado-star/MICB-475-Team-2/tree/main/core_microbiome) - Core microbiome analysis  
-[**Aim 4**](https://github.com/Xpado-star/MICB-475-Team-2/tree/main/Indicator%20Taxa) - Indicator species analysis  
+- [Script](https://github.com/Xpado-star/MICB-475-Team-2/blob/main/Metadata/metadata_column_add.R)
+- [Updated tsv](https://github.com/Xpado-star/MICB-475-Team-2/blob/main/Metadata/pd_metadata_treatment.tsv)
+
+[**Aim 2**](https://github.com/Xpado-star/MICB-475-Team-2/tree/main/alpha_beta_diversity) - Alpha and beta diversity analysis in R  
+- [Script](https://github.com/Xpado-star/MICB-475-Team-2/blob/main/alpha_beta_diversity/aim1_diversity_metrics.R)  
+ 
+
+[**Aim 3**](https://github.com/Xpado-star/MICB-475-Team-2/tree/main/core_microbiome) - Core microbiome analysis 
+- [Heatmap script](https://github.com/Xpado-star/MICB-475-Team-2/blob/main/core_microbiome/coremicrobiome_AZ.R)
+- [Venn diagram script](https://github.com/Xpado-star/MICB-475-Team-2/blob/main/core_microbiome/core_microbiome_Alicia.R)
+
+[**Aim 4**](https://github.com/Xpado-star/MICB-475-Team-2/tree/main/Indicator%20Taxa) - Indicator species analysis 
+- [Script](https://github.com/Xpado-star/MICB-475-Team-2/blob/main/Indicator%20Taxa/Indicator%20Taxa%20R%20script.R)
+
 [**Aim 5**](https://github.com/Xpado-star/MICB-475-Team-2/tree/main/DESEq2) - Differential abundance analysis
+- [Volcano and bar plot script](https://github.com/Xpado-star/MICB-475-Team-2/blob/main/DESEq2/DESEq2.R)
+- [Abundance plot script](https://github.com/Xpado-star/MICB-475-Team-2/blob/main/DESEq2/Genus_Bar_Graphs.R)
+- [Sub-aim: linear regression script](https://github.com/Xpado-star/MICB-475-Team-2/blob/main/DESEq2/regression_analysis.R)
 
 # Project Timeline
 <img width="970" alt="image" src="https://github.com/Xpado-star/MICB-475-Team-2/assets/158794595/585a1732-3b90-4d0a-81b5-dffb9b7bf307">
